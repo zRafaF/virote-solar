@@ -19,7 +19,7 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - name: Install dep
-      - run: pip install -r docs/requirements.txt
       - name: Deploy gh-page
-      - run: mkdocs gh-deploy --force
+        run: pip install -r docs/requirements.txt
+      - name: Deploy gh-page
+        run: mkdocs gh-deploy --force
