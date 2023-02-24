@@ -3,8 +3,6 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import React, { FC, ReactComponentElement } from "react";
-import { IconType } from "react-icons/lib";
-import { JsxElement } from "typescript";
 
 interface MainPageProps {
   preIcon?: JSX.Element;
