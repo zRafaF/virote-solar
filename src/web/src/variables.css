@@ -1,0 +1,19 @@
+/**
+ * Copyright (c) 2023 Rafael F. Meneses
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+html {
+  --primary_color: #5d6470;
+  --font_color: #5d6470;
+  --font_color_inverted: #ffffff;
+
+  --font_xxs: 1em;
+  --font_xs: 1.2em;
+  --font_s: 1.6em;
+  --font_m: 2em;
+  --font_l: 3.2em;
+  --font_xl: 4em;
+}

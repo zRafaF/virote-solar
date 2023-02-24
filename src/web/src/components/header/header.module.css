@@ -1,0 +1,27 @@
+/**
+ * Copyright (c) 2023 Rafael F. Meneses
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+@import url("../../variables.css");
+
+.header_div {
+  background-color: var(--primary_color);
+  height: 7.5vh;
+  height: 7.5svh;
+  display: flex;
+  align-items: center;
+}
+
+.logo_name {
+  padding-left: 2%;
+  font-family: righteous;
+  color: var(--font_color_inverted);
+  font-size: var(--font_l);
+}
+
+.button_group {
+  padding-left: 2%;
+}
