@@ -19,6 +19,6 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-        run: npm run installDocsDep
-        run: mkdocs gh-deploy --force
+        run: "npm run installDocsDep"
+        run: "mkdocs gh-deploy --force"
           
