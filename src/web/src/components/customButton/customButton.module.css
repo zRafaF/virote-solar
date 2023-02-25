@@ -9,7 +9,21 @@
 .custom_button {
     --font_color: #000000;
     color: var(--font_color);
+    font-size: var(--font_s);
+
     font-weight: bold;
-    display: flex;
     align-items: center;
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 5px;
+}
+
+.custom_button:hover {
+    background-color: #00000034;
+}
+.custom_button:active {
+    background-color: #00000059;
 }

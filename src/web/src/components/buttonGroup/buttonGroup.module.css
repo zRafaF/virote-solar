@@ -7,21 +7,29 @@
 @import url("../../variables.css");
 
 .button_group_div {
+    --active_color: #ffffff;
+    --inactive_color: #9c9c9c;
+    --divider_color: #51555c;
+    height: 100%;
+    align-items: center;
     display: flex;
 }
 
 .button {
     background-color: transparent;
     border: none;
+    color: var(--inactive_color);
+    height: 70%;
+    width: 7em;
 }
 
 .button_active {
-    background-color: rebeccapurple;
+    color: var(--active_color);
 }
 
 .vertical_line {
-    width: 2px;
-    height: 100;
+    width: 1.5px;
+    height: 70%;
     border-radius: 1px;
-    background-color: wheat;
+    background-color: var(--divider_color);
 }

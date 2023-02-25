@@ -5,7 +5,7 @@
 import React, { FC } from "react";
 import styleModule from "./header.module.css";
 
-import { FaFileCode } from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa";
 import { MdMap, MdSettings, MdInfo } from "react-icons/md";
 import CustomButton from "../customButton/customButton";
 import ButtonGroup from "../buttonGroup/buttonGroup";
@@ -16,42 +16,42 @@ const Header: FC<HeaderProps> = () => {
     return (
         <div className={styleModule.header_div}>
             <div className={styleModule.logo_name}>VIROTE</div>
-            <ButtonGroup>
+            <ButtonGroup className={styleModule.button_group}>
                 <CustomButton
                     key={"Mapa"}
-                    preIcon={<MdMap />}
-                    color={"black"}
-                    iconSize="var(--font_m)"
+                    postIcon={<MdMap />}
+                    color={"white"}
+                    iconSize="var(--font_s)"
                     className=""
                 >
                     Mapa
                 </CustomButton>
                 <CustomButton
-                    key={"Inspecionar"}
-                    preIcon={<FaFileCode />}
-                    color={"black"}
-                    iconSize="var(--font_m)"
+                    key={"Inspec."}
+                    postIcon={<FaLaptopCode />}
+                    color={"white"}
+                    iconSize="var(--font_s)"
                     className=""
                 >
-                    Inspecionar
+                    Inspec.
                 </CustomButton>
                 <CustomButton
-                    key={"Configuração"}
-                    preIcon={<MdSettings />}
-                    color={"black"}
-                    iconSize="var(--font_m)"
+                    key={"Config."}
+                    postIcon={<MdSettings />}
+                    color={"white"}
+                    iconSize="var(--font_s)"
                     className=""
                 >
-                    Configuração
+                    Config.
                 </CustomButton>
                 <CustomButton
                     key={"Inspecionar"}
-                    preIcon={<MdInfo />}
-                    color={"black"}
-                    iconSize="var(--font_m)"
+                    postIcon={<MdInfo />}
+                    color={"white"}
+                    iconSize="var(--font_s)"
                     className=""
                 >
-                    Inspecionar
+                    Sobre
                 </CustomButton>
             </ButtonGroup>
         </div>

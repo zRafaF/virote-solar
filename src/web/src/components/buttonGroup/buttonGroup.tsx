@@ -10,13 +10,27 @@ interface ButtonGroupProps {
     children?: JSX.Element | JSX.Element[];
     currentActive?: Key;
     setCurrentActive?: Dispatch<SetStateAction<Key>>;
+    activeColor?: string;
+    inactiveColor?: string;
+    dividerColor?: string;
+    className?: string;
 }
 
 const ButtonGroup: FC<ButtonGroupProps> = ({
     children,
     currentActive = "",
     setCurrentActive,
+    activeColor = "",
+    inactiveColor = "",
+    dividerColor = "",
+    className,
 }) => {
+    const buttonGroupStyle = {
+        "--active_color": activeColor,
+        "--inactive_color": inactiveColor,
+        "--divider_color": dividerColor,
+    } as React.CSSProperties;
+
     const getClassName = (element: JSX.Element): string => {
         if (element.key === currentActive)
             return [
@@ -55,7 +69,14 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
         });
         return buttonsArr;
     };
-    return <div className={styleModule.button_group_div}> {makeButtons()}</div>;
+    const getDivClassName = () => {
+        return [className, styleModule.button_group_div].join(" ");
+    };
+    return (
+        <div className={getDivClassName()} style={buttonGroupStyle}>
+            {makeButtons()}
+        </div>
+    );
 };
 
 export default ButtonGroup;

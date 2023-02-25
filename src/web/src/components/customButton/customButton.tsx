@@ -23,6 +23,8 @@ const CustomButton: FC<CustomButtonProps> = ({
     children,
     className,
 }) => {
+    const buttonStyle = { "--font_color": color } as React.CSSProperties;
+
     const iconStyle: React.CSSProperties = {
         color: color ? color : "#000000",
         width: iconSize ? iconSize : "1em",
@@ -45,10 +47,7 @@ const CustomButton: FC<CustomButtonProps> = ({
     };
 
     return (
-        <button
-            className={getClassName()}
-            style={{ "--font_color": color } as React.CSSProperties}
-        >
+        <button className={getClassName()} style={buttonStyle}>
             {createPreIcon()} {children} {createPostIcon()}
         </button>
     );
