@@ -1,0 +1,27 @@
+/**
+ * Copyright (c) 2023 Rafael F. Meneses
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+@import url("../../variables.css");
+
+.button_group_div {
+    display: flex;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+}
+
+.button_active {
+    background-color: rebeccapurple;
+}
+
+.vertical_line {
+    width: 2px;
+    height: 100;
+    border-radius: 1px;
+    background-color: wheat;
+}
