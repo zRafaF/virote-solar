@@ -3,11 +3,21 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import React, { FC } from "react";
+import styleModule from "./mainPage.module.css";
+
+import SideMenu from "../sideMenu/sideMenu";
 
 interface MainPageProps {}
 
 const MainPage: FC<MainPageProps> = () => {
-  return <div>Main Page</div>;
+    return (
+        <div className={styleModule.main_page_div}>
+            <div className={styleModule.side_menu}>
+                <SideMenu />
+            </div>
+            <div className={styleModule.content}>Main Page</div>
+        </div>
+    );
 };
 
 export default MainPage;

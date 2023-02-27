@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { FC, Dispatch, SetStateAction, Key } from "react";
+import { FC, Key } from "react";
 import styleModule from "./buttonGroup.module.css";
 
 interface ButtonGroupProps {

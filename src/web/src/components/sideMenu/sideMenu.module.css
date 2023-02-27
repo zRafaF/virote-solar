@@ -7,18 +7,11 @@
 
 @import url("../../variables.css");
 
-.main_page_div {
-    position: absolute;
-    display: flex;
+.side_menu_div {
+    background-color: white;
     height: stretch;
-    width: stretch;
 }
-
-.side_menu {
-    width: 20%;
-}
-
-.content {
-    background-color: rebeccapurple;
-    width: stretch;
+.file_save_load {
+    height: 10%;
+    background-color: black;
 }

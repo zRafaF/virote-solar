@@ -2,7 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import React, { FC, Key, useState } from "react";
+import { FC, Key, useState } from "react";
 import styleModule from "./header.module.css";
 
 import { FaLaptopCode } from "react-icons/fa";
@@ -13,7 +13,7 @@ import ButtonGroup from "../buttonGroup/buttonGroup";
 interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
-    const [currentActive, setCurrentActive] = useState<Key>(" ");
+    const [currentActive, setCurrentActive] = useState<Key>("Mapa");
     return (
         <div className={styleModule.header_div}>
             <div className={styleModule.logo_name}>VIROTE</div>
