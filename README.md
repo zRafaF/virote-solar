@@ -4,7 +4,7 @@ App for creating UAV missions.
 
 
 * Front-end with JavaScript using [React](https://reactjs.org/)
-* Backend with Python using [https://github.com/python-eel/Eel]
+* Backend with Python using [eel](https://github.com/python-eel/Eel)
 
 It uses the protocol [MavLink](https://mavlink.io/en/) to communicate with the UAV, through the python library [Pymavlink](https://github.com/ArduPilot/pymavlink)
 

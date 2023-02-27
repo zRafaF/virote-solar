@@ -8,8 +8,8 @@ import styleModule from "./buttonGroup.module.css";
 
 interface ButtonGroupProps {
     children?: JSX.Element | JSX.Element[];
-    currentActive?: Key;
-    setCurrentActive?: Dispatch<SetStateAction<Key>>;
+    currentActive: Key;
+    setCurrentActive: (value: React.SetStateAction<Key>) => void;
     activeColor?: string;
     inactiveColor?: string;
     dividerColor?: string;
@@ -51,6 +51,13 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
                 />
             );
         }
+
+        const iWasClicked = (key: Key) => {
+            if (setCurrentActive !== undefined) {
+                setCurrentActive(key);
+            }
+        };
+
         const buttonsArr = children.map((child, index) => {
             const makeDivider = () => {
                 if (index > 0)
@@ -61,8 +68,11 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
                 <>
                     {makeDivider()}
                     <child.type
+                        buttonKey={child.key}
                         {...child.props}
+                        color={" "} // Do not remove this LOC
                         className={getClassName(child)}
+                        clickCallBack={iWasClicked}
                     />
                 </>
             );

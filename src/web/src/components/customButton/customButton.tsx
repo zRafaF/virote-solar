@@ -2,7 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import React, { FC, Key } from "react";
+import React, { FC, Key, useState } from "react";
 import styleModule from "./customButton.module.css";
 
 interface CustomButtonProps {
@@ -12,7 +12,8 @@ interface CustomButtonProps {
     iconSize?: string | number;
     children?: JSX.Element | JSX.Element[] | string | string[];
     className?: string;
-    key: Key;
+    buttonKey: Key; // same as the key
+    clickCallBack?: (key: Key) => void;
 }
 
 const CustomButton: FC<CustomButtonProps> = ({
@@ -22,9 +23,10 @@ const CustomButton: FC<CustomButtonProps> = ({
     iconSize,
     children,
     className,
+    buttonKey,
+    clickCallBack,
 }) => {
     const buttonStyle = { "--font_color": color } as React.CSSProperties;
-
     const iconStyle: React.CSSProperties = {
         color: color ? color : "#000000",
         width: iconSize ? iconSize : "1em",
@@ -46,8 +48,18 @@ const CustomButton: FC<CustomButtonProps> = ({
         return [className, styleModule.custom_button].join(" ");
     };
 
+    const clicked = () => {
+        if (clickCallBack !== undefined) {
+            clickCallBack(buttonKey);
+        }
+    };
+
     return (
-        <button className={getClassName()} style={buttonStyle}>
+        <button
+            className={getClassName()}
+            style={buttonStyle}
+            onClick={clicked}
+        >
             {createPreIcon()} {children} {createPostIcon()}
         </button>
     );
