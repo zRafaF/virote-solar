@@ -11,7 +11,7 @@ interface MainPageProps {}
 
 const MainPage: FC<MainPageProps> = () => {
     return (
-        <div className={styleModule.main_page_div}>
+        <div className={styleModule.main_page_div} data-testid="main page">
             <div className={styleModule.side_menu}>
                 <SideMenu />
             </div>

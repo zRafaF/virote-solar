@@ -8,28 +8,30 @@ import Header from "./components/header/header";
 
 export const eel = window.eel;
 try {
-  eel.set_host("ws://localhost:8080");
-  toast.success("Conexão estabelecida");
+    eel.set_host("ws://localhost:8080");
+    toast.success("Conexão estabelecida");
 } catch {
-  toast.error("Não foi possível conectar com o backend");
+    toast.error("Não foi possível conectar com o backend");
 }
 
 async function callEelFunc() {
-  eel.my_func();
+    try {
+        eel.my_func();
+    } catch (error) {}
 }
 
 callEelFunc();
 
 function App() {
-  return (
-    <React.Fragment>
-      <div className="App">
-        <Header></Header>
-        <MainPage></MainPage>
-      </div>
-      <ToastContainer className="toast_notify" transition={Zoom} />
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <div className="App">
+                <Header data-testid="AppHeader"></Header>
+                <MainPage data-testid="AppMainPage"></MainPage>
+            </div>
+            <ToastContainer className="toast_notify" transition={Zoom} />
+        </React.Fragment>
+    );
 }
 
 export default App;

@@ -4,7 +4,7 @@
     "licenser.license": "MIT",
     "licenser.projectName": "Virote",
     "prettier.tabWidth": 4,
-    "cSpell.words": ["virote"],
+    "cSpell.words": ["virote", "testid"],
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     }

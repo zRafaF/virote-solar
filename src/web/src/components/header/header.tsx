@@ -15,7 +15,7 @@ interface HeaderProps {}
 const Header: FC<HeaderProps> = () => {
     const [currentActive, setCurrentActive] = useState<Key>("Mapa");
     return (
-        <div className={styleModule.header_div}>
+        <div className={styleModule.header_div} data-testid="header">
             <div className={styleModule.logo_name}>VIROTE</div>
             <ButtonGroup
                 className={styleModule.button_group}

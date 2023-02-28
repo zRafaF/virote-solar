@@ -10,8 +10,13 @@ interface SideMenuProps {}
 
 const SideMenu: FC<SideMenuProps> = () => {
     return (
-        <div className={styleModule.side_menu_div}>
-            <div className={styleModule.file_save_load}> LOAD </div>
+        <div className={styleModule.side_menu_div} data-testid="SideMenu">
+            <div
+                className={styleModule.file_save_load}
+                data-testid="file saver and loader"
+            >
+                LOAD
+            </div>
         </div>
     );
 };
