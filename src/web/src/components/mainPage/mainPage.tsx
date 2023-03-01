@@ -4,8 +4,9 @@
 // https://opensource.org/licenses/MIT
 import React, { FC } from "react";
 import styleModule from "./mainPage.module.css";
+import MapComponent from "./mapComponent/mapComponent";
 
-import SideMenu from "../sideMenu/sideMenu";
+import SideMenu from "./sideMenu/sideMenu";
 
 interface MainPageProps {}
 
@@ -15,7 +16,9 @@ const MainPage: FC<MainPageProps> = () => {
             <div className={styleModule.side_menu}>
                 <SideMenu />
             </div>
-            <div className={styleModule.content}>Main Page</div>
+            <div className={styleModule.content}>
+                <MapComponent></MapComponent>
+            </div>
         </div>
     );
 };

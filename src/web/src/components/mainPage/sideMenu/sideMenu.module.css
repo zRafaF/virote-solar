@@ -5,13 +5,21 @@
  * https://opensource.org/licenses/MIT
  */
 
-@import url("../../variables.css");
+@import url("../../../variables.css");
 
 .side_menu_div {
-    background-color: white;
+    background-color: #f2f2f2;
     height: stretch;
 }
 .file_save_load {
     height: 10%;
     background-color: black;
+}
+.side_bar_wave_div {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 17%;
+    transform-origin: left;
+    transform: scaleX(0.7);
 }
