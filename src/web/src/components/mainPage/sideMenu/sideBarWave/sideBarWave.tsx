@@ -9,8 +9,8 @@ interface SideBarWaveProps {}
 const SideBarWave: FC<SideBarWaveProps> = () => {
     return (
         <svg
-            width="126"
-            height="1050"
+            width="100%"
+            height="100%"
             viewBox="0 0 126 1050"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

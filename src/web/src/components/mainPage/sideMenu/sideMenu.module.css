@@ -13,7 +13,6 @@
 }
 .file_save_load {
     height: 10%;
-    background-color: black;
 }
 .side_bar_wave_div {
     position: absolute;
@@ -21,5 +20,4 @@
     top: 0;
     left: 17%;
     transform-origin: left;
-    transform: scaleX(0.7);
 }
