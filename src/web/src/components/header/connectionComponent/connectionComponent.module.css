@@ -18,17 +18,38 @@
 }
 
 .connection_dropdown_place_holder {
-    height: 1.8vh;
     width: 2.5vw;
 }
 
 .connection_dropdown {
     font-size: var(--font_xxs);
     white-space: nowrap;
+    transition-duration: var(--animation_fast);
 }
-.connection_dropdown_control {
+
+.connection_component_div .connection_dropdown_control {
     color: white;
     border: none;
-    text-align: center;
     background-color: #00000034;
+}
+
+.connection_dropdown:hover {
+    background-color: #00000057;
+}
+.connection_dropdown:active {
+    transform: scale(0.9);
+}
+
+.connection_dropdown_menu {
+    transition-duration: var(--animation_fast);
+    animation: slide-in var(--animation_slow);
+}
+
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

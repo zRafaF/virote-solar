@@ -37,6 +37,7 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                     }
                     className={styleModule.connection_dropdown}
                     controlClassName={styleModule.connection_dropdown_control}
+                    menuClassName={styleModule.connection_dropdown_menu}
                     placeholder=" "
                 />
                 &nbsp; Baud&nbsp;
@@ -47,9 +48,11 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                     }
                     className={styleModule.connection_dropdown}
                     controlClassName={styleModule.connection_dropdown_control}
+                    menuClassName={styleModule.connection_dropdown_menu}
                     placeholder=" "
                 />
-                &nbsp; Conectado
+                &nbsp;
+                <div style={{ color: "#ED0707" }}>Desconec.</div>
             </div>
         </div>
     );
