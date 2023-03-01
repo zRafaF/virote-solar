@@ -6,11 +6,15 @@
 import React, { FC } from "react";
 import styleModule from "./connectionComponent.module.css";
 
+import CustomButton from "../../customButton/customButton";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const comOptions = ["COM 0", "COM 1", "COM 2"];
+import { TbPlugX } from "react-icons/tb";
+
+const comOptions = [" ", "COM 0", "COM 1", "COM 2"];
 const baudOptions = [
+    " ",
     "4800",
     "9600",
     "14400",
@@ -40,7 +44,7 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                     menuClassName={styleModule.connection_dropdown_menu}
                     placeholder=" "
                 />
-                &nbsp; Baud&nbsp;
+                &nbsp;Baud&nbsp;
                 <Dropdown
                     options={baudOptions}
                     placeholderClassName={
@@ -53,6 +57,17 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                 />
                 &nbsp;
                 <div style={{ color: "#ED0707" }}>Desconec.</div>
+                &nbsp;
+                <CustomButton
+                    key={"Disconnect"}
+                    buttonKey={"Disconnect"}
+                    postIcon={<TbPlugX />}
+                    color={"#EE3C3C"}
+                    iconSize="var(--font_m)"
+                    className={styleModule.disconnect_button}
+                >
+                    Encerrar
+                </CustomButton>
             </div>
         </div>
     );

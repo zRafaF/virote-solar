@@ -18,6 +18,7 @@
 }
 
 .connection_dropdown_place_holder {
+    height: 2.5vh;
     width: 2.5vw;
 }
 
@@ -52,4 +53,13 @@
     100% {
         opacity: 1;
     }
+}
+
+.disconnect_button {
+    display: flex;
+    background-color: #721616;
+    border-color: #ee3c3c;
+    border-style: solid;
+    font-size: var(--font_xs);
+    border-radius: 10px;
 }
