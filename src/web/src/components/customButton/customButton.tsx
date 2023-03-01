@@ -2,7 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import React, { FC, Key, useState } from "react";
+import React, { FC, Key } from "react";
 import styleModule from "./customButton.module.css";
 
 interface CustomButtonProps {

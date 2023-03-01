@@ -22,4 +22,7 @@
     background-color: rebeccapurple;
     width: 83%;
     overflow: hidden;
+    display: absolute;
+    z-index: -1;
+    background-image: url("./mapComponent/mapPlaceHolder.png");
 }

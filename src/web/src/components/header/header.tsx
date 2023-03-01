@@ -9,6 +9,7 @@ import { FaLaptopCode } from "react-icons/fa";
 import { MdMap, MdSettings, MdInfo } from "react-icons/md";
 import CustomButton from "../customButton/customButton";
 import ButtonGroup from "../buttonGroup/buttonGroup";
+import ConnectionComponent from "./connectionComponent/connectionComponent";
 
 interface HeaderProps {}
 
@@ -63,6 +64,7 @@ const Header: FC<HeaderProps> = () => {
                     Sobre
                 </CustomButton>
             </ButtonGroup>
+            <ConnectionComponent className={styleModule.connection_dropdown} />
         </div>
     );
 };
