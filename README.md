@@ -2,6 +2,8 @@
 
 App for creating UAV missions.
 
+## You can see the React [Front-end HERE!](https://zrafaf.github.io/virote/src/web/build/index.html)
+> This is a static version of the app, without access to the server, therefore most features won't work.
 
 * Front-end with JavaScript using [React](https://reactjs.org/)
 * Backend with Python using [eel](https://github.com/python-eel/Eel)
