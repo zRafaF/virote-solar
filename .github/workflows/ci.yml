@@ -19,7 +19,7 @@ jobs:
               with:
                   key: ${{ github.ref }}
                   path: .cache
-                        - name: Build react
+            - name: Build react
               run: |
                   npm run installDepWeb
                   cd src/web && npm run build && cd .. && cd ..
@@ -35,4 +35,3 @@ jobs:
               run: pip install -r docs/requirements.txt
             - name: Deploy gh-page
               run: mkdocs gh-deploy --force
-
