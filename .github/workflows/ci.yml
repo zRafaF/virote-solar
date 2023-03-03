@@ -19,10 +19,11 @@ jobs:
               with:
                   key: ${{ github.ref }}
                   path: .cache
+            - name: Deploy gh-page
+              run: pip install -r docs/requirements.txt
+            - name: Deploy gh-page
+              run: mkdocs gh-deploy --force
             - name: Build react
-              run: |
-                  npm run installDepWeb
-                  cd src/web && npm run build && cd .. && cd ..
             - name: Add files
               run: |
                   git fetch
@@ -31,7 +32,3 @@ jobs:
                   git add -A
                   git diff-index --quiet HEAD ||  git commit -am "deploy files"
                   git push origin gh-pages
-            - name: Deploy gh-page
-              run: pip install -r docs/requirements.txt
-            - name: Deploy gh-page
-              run: mkdocs gh-deploy --force
