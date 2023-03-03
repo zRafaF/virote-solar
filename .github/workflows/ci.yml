@@ -1,25 +1,36 @@
 name: ci
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 permissions:
-  contents: write
+    contents: write
 jobs:
-  deploy:
-    env:
-      ENABLE_PDF_EXPORT: 1
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - uses: actions/cache@v2
-        with:
-          key: ${{ github.ref }}
-          path: .cache
-      - name: Deploy gh-page
-        run: pip install -r docs/requirements.txt
-      - name: Deploy gh-page
-        run: mkdocs gh-deploy --force
+    deploy:
+        env:
+            ENABLE_PDF_EXPORT: 1
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-python@v4
+              with:
+                  python-version: 3.x
+            - uses: actions/cache@v2
+              with:
+                  key: ${{ github.ref }}
+                  path: .cache
+            - name: Deploy gh-page
+              run: pip install -r docs/requirements.txt
+            - name: Deploy gh-page
+              run: mkdocs gh-deploy --force
+            - name: Build react
+              run: npm run installDepWeb
+              run: npm run buildWeb
+            - name: Add files
+              run: |
+                  git fetch
+                  git checkout gh-pages
+                  git checkout ${GITHUB_REF##*/} -- src/web/build/.
+                  git add -A
+                  git diff-index --quiet HEAD ||  git commit -am "deploy files"
+                  git push origin gh-pages
