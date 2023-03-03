@@ -4,7 +4,7 @@ on:
         branches:
             - main
 permissions:
-    contents: write
+    contents: read|write
 jobs:
     deploy:
         env:
@@ -19,11 +19,7 @@ jobs:
               with:
                   key: ${{ github.ref }}
                   path: .cache
-            - name: Deploy gh-page
-              run: pip install -r docs/requirements.txt
-            - name: Deploy gh-page
-              run: mkdocs gh-deploy --force
-            - name: Build react
+                        - name: Build react
               run: |
                   npm run installDepWeb
                   cd src/web && npm run build && cd .. && cd ..
@@ -35,3 +31,8 @@ jobs:
                   git add -A
                   git diff-index --quiet HEAD ||  git commit -am "deploy files"
                   git push origin gh-pages
+            - name: Deploy gh-page
+              run: pip install -r docs/requirements.txt
+            - name: Deploy gh-page
+              run: mkdocs gh-deploy --force
+
