@@ -23,7 +23,6 @@ jobs:
               run: pip install -r docs/requirements.txt
             - name: Deploy gh-page
               run: mkdocs gh-deploy --force
-            - name: Build react
             - name: Add files
               run: |
                   git fetch
