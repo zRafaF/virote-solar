@@ -1,5 +1,10 @@
 # Home
 
+## Acesse o [Front-end AQUI!](src/web/build/index.html)
+> Essa é uma versão estática do app, ou seja, sem acesso ao servidor
+
+___
+
 Documentação do aplicativo **Virote** uma solução para criação de missões de UAVs.
 
 - Front-end em JavaScript utilizando [React](https://reactjs.org/)
