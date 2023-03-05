@@ -64,6 +64,7 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                     postIcon={<TbPlugX />}
                     color={"#EE3C3C"}
                     iconSize="var(--font_m)"
+                    toolTip="Conexão"
                     className={styleModule.disconnect_button}
                 >
                     Encerrar

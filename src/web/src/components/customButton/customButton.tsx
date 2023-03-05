@@ -13,7 +13,7 @@ interface CustomButtonProps {
     children?: JSX.Element | JSX.Element[] | string | string[];
     className?: string;
     buttonKey: Key; // same as the key
-    toolTip?: string;
+    toolTip: string;
     clickCallBack?: (key: Key) => void;
 }
 

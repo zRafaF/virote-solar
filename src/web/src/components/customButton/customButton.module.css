@@ -13,13 +13,14 @@
 
     font-weight: bold;
     align-items: center;
-    display: inline;
     white-space: nowrap;
     overflow: hidden;
     padding-left: 1%;
     padding-right: 1%;
     border-radius: 2px;
     transition-duration: var(--animation_fast);
+    display: flex;
+    justify-content: center;
 }
 
 .custom_button:hover {

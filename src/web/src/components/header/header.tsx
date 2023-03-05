@@ -24,6 +24,7 @@ const Header: FC<HeaderProps> = () => {
                 setCurrentActive={setCurrentActive}
             >
                 <CustomButton
+                    toolTip="Mapa"
                     key={"Mapa"}
                     buttonKey={"Mapa"}
                     postIcon={<MdMap />}
@@ -34,6 +35,7 @@ const Header: FC<HeaderProps> = () => {
                     Mapa
                 </CustomButton>
                 <CustomButton
+                    toolTip="Inspecionar"
                     key={"Inspec."}
                     buttonKey={"Inspec."}
                     postIcon={<FaLaptopCode />}
@@ -44,6 +46,7 @@ const Header: FC<HeaderProps> = () => {
                     Inspec.
                 </CustomButton>
                 <CustomButton
+                    toolTip="Configurações"
                     key={"Config."}
                     buttonKey={"Config."}
                     postIcon={<MdSettings />}
@@ -54,8 +57,9 @@ const Header: FC<HeaderProps> = () => {
                     Config.
                 </CustomButton>
                 <CustomButton
-                    key={"Inspecionar"}
-                    buttonKey={"Inspecionar"}
+                    toolTip="Sobre"
+                    key={"Sobre"}
+                    buttonKey={"Sobre"}
                     postIcon={<MdInfo />}
                     color={"white"}
                     iconSize="var(--font_s)"
