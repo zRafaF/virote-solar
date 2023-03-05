@@ -111,5 +111,8 @@ markdown_extensions:
 nav:
     - Home:
           - Home: index.md
+    - Front end:
+          - Front end: front-end/index.md
+          - Mapas: front-end/mapas.md
     - Sobre:
           - Sobre: sobre/index.md

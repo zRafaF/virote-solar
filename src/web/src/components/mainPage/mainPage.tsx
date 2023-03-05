@@ -17,6 +17,7 @@ const MainPage: FC<MainPageProps> = () => {
                 <SideMenu />
             </div>
             <div className={styleModule.content}>
+                {" "}
                 <MapComponent></MapComponent>
             </div>
         </div>

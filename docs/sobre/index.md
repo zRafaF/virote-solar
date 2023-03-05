@@ -61,6 +61,8 @@ Este software é distribuído sobre a **[MIT License](https://mit-license.org/)*
 
 * React Dropdown - [ver licença](https://github.com/fraserxu/react-dropdown/blob/master/LICENSE)
 
+* React Leaflet - [ver licença](https://github.com/PaulLeCam/react-leaflet/blob/master/LICENSE.md)
+
 ___
 
 Agradecemos do fundo do coração todos os autores dos diferentes projetos utilizados, **software livre** é liberdade, muito obrigado a todos.
