@@ -6,7 +6,7 @@ import { FC, Key, useState } from "react";
 import styleModule from "./header.module.css";
 
 import { FaLaptopCode } from "react-icons/fa";
-import { MdMap, MdSettings, MdInfo } from "react-icons/md";
+import { MdMap, MdSettings, MdInfo, MdMenu } from "react-icons/md";
 import CustomButton from "../customButton/customButton";
 import ButtonGroup from "../buttonGroup/buttonGroup";
 import ConnectionComponent from "./connectionComponent/connectionComponent";
@@ -17,6 +17,14 @@ const Header: FC<HeaderProps> = () => {
     const [currentActive, setCurrentActive] = useState<Key>("Mapa");
     return (
         <div className={styleModule.header_div} data-testid="header">
+            <CustomButton
+                className={styleModule.menu_button}
+                buttonKey={"menu"}
+                toolTip={"Menu"}
+                preIcon={<MdMenu />}
+                iconSize={"var(--font_l)"}
+                color={"var(--font_color_inverted)"}
+            />
             <div className={styleModule.logo_name}>VIROTE</div>
             <ButtonGroup
                 className={styleModule.button_group}

@@ -13,3 +13,8 @@
     filter: invert();
     mix-blend-mode: lighten;
 } */
+@media (orientation: portrait) {
+    .leaflet-control-attribution {
+        display: none;
+    }
+}

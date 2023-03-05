@@ -12,6 +12,7 @@
     display: flex;
     height: stretch;
     width: stretch;
+    flex-direction: row-reverse;
 }
 
 .side_menu {
@@ -24,4 +25,22 @@
     overflow: hidden;
     display: absolute;
     /*background-image: url("./mapComponent/mapPlaceHolder.png");*/
+}
+
+@media (orientation: portrait) {
+    .main_page_div {
+        display: block;
+    }
+    .side_menu {
+        width: 100%;
+        bottom: 0;
+        z-index: 40;
+        height: 80vh;
+        transform: translateY(73vh);
+        position: absolute;
+    }
+    .content {
+        height: stretch;
+        width: 100%;
+    }
 }

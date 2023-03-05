@@ -34,3 +34,30 @@
     position: absolute;
     right: 1%;
 }
+
+.menu_button {
+    display: none;
+}
+
+@media (orientation: portrait) {
+    .header_div {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .menu_button {
+        display: block;
+        position: absolute;
+        left: 0;
+    }
+    .button_group {
+        visibility: hidden;
+        display: none;
+    }
+    .connection_dropdown {
+        display: none;
+    }
+    .logo_name {
+        margin-top: 1vh;
+        text-align: center;
+    }
+}

@@ -13,12 +13,11 @@ interface MainPageProps {}
 const MainPage: FC<MainPageProps> = () => {
     return (
         <div className={styleModule.main_page_div} data-testid="main page">
+            <div className={styleModule.content}>
+                <MapComponent></MapComponent>
+            </div>
             <div className={styleModule.side_menu}>
                 <SideMenu />
-            </div>
-            <div className={styleModule.content}>
-                {" "}
-                <MapComponent></MapComponent>
             </div>
         </div>
     );

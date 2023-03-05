@@ -11,6 +11,9 @@
     background-color: #f2f2f2;
     height: stretch;
 }
+.mobile_pull_tab_div {
+    display: none;
+}
 .file_save_load {
     height: 10%;
 }
@@ -21,4 +24,31 @@
     left: 17%;
     transform-origin: left;
     z-index: 31;
+}
+
+@media (orientation: portrait) {
+    .side_bar_wave_div {
+        display: none;
+    }
+    .mobile_pull_tab_div {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 2vh;
+    }
+    .mobile_pull_tab {
+        background-color: #c2c2c2;
+        height: 5px;
+        width: 25%;
+        border-radius: 50px;
+    }
+
+    .side_menu_div {
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.5);
+        transition-duration: var(--animation_slow);
+    }
+    .side_menu_div:hover {
+        transform: translateY(-70vh);
+    }
 }
