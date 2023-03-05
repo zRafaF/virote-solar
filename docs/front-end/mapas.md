@@ -16,3 +16,7 @@ As `TileLayer`s com imagem de satélite estão sendo providas pelo **Esri World 
 > Fique atento com utilizar o google maps, já que isso pode infringir os termos de uso.
 
 Acesse a lista de provedores gratuitos [aqui](http://leaflet-extras.github.io/leaflet-providers/preview/index.html).
+
+## Styling
+
+O *styling* do componente é feito utilizando `className`s estáticos, estes podem ser modificados no arquivo `app.css`. Para encontrar o nome da classe você pode utilizar o inspetor do seu navegador.  

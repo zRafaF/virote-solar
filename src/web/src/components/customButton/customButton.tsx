@@ -13,6 +13,7 @@ interface CustomButtonProps {
     children?: JSX.Element | JSX.Element[] | string | string[];
     className?: string;
     buttonKey: Key; // same as the key
+    toolTip?: string;
     clickCallBack?: (key: Key) => void;
 }
 
@@ -25,8 +26,13 @@ const CustomButton: FC<CustomButtonProps> = ({
     className,
     buttonKey,
     clickCallBack,
+    toolTip,
 }) => {
-    const buttonStyle = { "--font_color": color } as React.CSSProperties;
+    const buttonStyle = {
+        "--font_color": color,
+        textAlign: "center",
+        textDecoration: "none",
+    } as React.CSSProperties;
     const iconStyle: React.CSSProperties = {
         color: color ? color : "#000000",
         width: iconSize ? iconSize : "1em",
@@ -55,13 +61,16 @@ const CustomButton: FC<CustomButtonProps> = ({
     };
 
     return (
-        <button
+        <a
             className={getClassName()}
             style={buttonStyle}
             onClick={clicked}
+            href="#"
+            role="button"
+            title={toolTip}
         >
             {createPreIcon()} {children} {createPostIcon()}
-        </button>
+        </a>
     );
 };
 

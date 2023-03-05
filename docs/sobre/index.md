@@ -61,6 +61,8 @@ Este software é distribuído sobre a **[MIT License](https://mit-license.org/)*
 
 * React Dropdown - [ver licença](https://github.com/fraserxu/react-dropdown/blob/master/LICENSE)
 
+* React icons - [ver licença](https://github.com/react-icons/react-icons/blob/master/LICENSE)
+
 * React Leaflet - [ver licença](https://github.com/PaulLeCam/react-leaflet/blob/master/LICENSE.md)
 
 ___

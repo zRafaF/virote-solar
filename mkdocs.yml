@@ -114,5 +114,6 @@ nav:
     - Front end:
           - Front end: front-end/index.md
           - Mapas: front-end/mapas.md
+          - Styling: front-end/styling.md
     - Sobre:
           - Sobre: sobre/index.md
