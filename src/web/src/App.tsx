@@ -5,7 +5,6 @@ import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MainPage from "./components/mainPage/mainPage";
 import Header from "./components/header/header";
-import MapComponent from "./components/mainPage/mapComponent/mapComponent";
 
 export const eel = window.eel;
 try {
