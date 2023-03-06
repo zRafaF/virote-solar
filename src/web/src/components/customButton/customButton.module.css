@@ -30,3 +30,9 @@
     background-color: #00000059;
     transform: scale(0.9);
 }
+
+@media (pointer: coarse) {
+    .custom_button:hover {
+        background-color: unset;
+    }
+}
