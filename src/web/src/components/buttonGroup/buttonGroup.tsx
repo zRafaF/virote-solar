@@ -14,6 +14,7 @@ interface ButtonGroupProps {
     inactiveColor?: string;
     dividerColor?: string;
     className?: string;
+    vertical?: boolean;
 }
 
 const ButtonGroup: FC<ButtonGroupProps> = ({
@@ -24,6 +25,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
     inactiveColor = "",
     dividerColor = "",
     className,
+    vertical = false,
 }) => {
     const buttonGroupStyle = {
         "--active_color": activeColor,
@@ -31,14 +33,19 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
         "--divider_color": dividerColor,
     } as React.CSSProperties;
 
+    const getButtonClassName = (): string => {
+        if (vertical) return styleModule.button_vertical;
+        return styleModule.button;
+    };
+
     const getClassName = (element: JSX.Element): string => {
         if (element.key === currentActive)
             return [
                 element.props.className,
-                styleModule.button,
+                getButtonClassName(),
                 styleModule.button_active,
             ].join(" ");
-        return [element.props.className, styleModule.button].join(" ");
+        return [element.props.className, getButtonClassName()].join(" ");
     };
 
     const makeButtons = (): JSX.Element | undefined | JSX.Element[] => {
@@ -60,8 +67,14 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
 
         const buttonsArr = children.map((child, index) => {
             const makeDivider = () => {
-                if (index > 0)
+                if (index > 0) {
+                    if (vertical)
+                        return (
+                            <div className={styleModule.horizontal_line}></div>
+                        );
+
                     return <div className={styleModule.vertical_line}></div>;
+                }
                 return;
             };
             return (
@@ -80,6 +93,13 @@ const ButtonGroup: FC<ButtonGroupProps> = ({
         return buttonsArr;
     };
     const getDivClassName = () => {
+        if (vertical)
+            return [
+                className,
+                styleModule.button_group_div,
+                styleModule.button_group_div_vertical,
+            ].join(" ");
+
         return [className, styleModule.button_group_div].join(" ");
     };
     return (

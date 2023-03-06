@@ -11,8 +11,6 @@ import CustomButton from "../customButton/customButton";
 import ButtonGroup from "../buttonGroup/buttonGroup";
 import ConnectionComponent from "./connectionComponent/connectionComponent";
 
-type OrientationType = "landscape" | "portrait";
-
 interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
@@ -59,55 +57,63 @@ const Header: FC<HeaderProps> = () => {
             />
             <div className={styleModule.logo_name}>VIROTE</div>
             <div className={getMobileMenuClassName()}>
-                <CustomButton
-                    toolTip="Mapa"
-                    key={"Mapa"}
-                    buttonKey={"Mapa"}
-                    postIcon={<MdMap />}
-                    color={"white"}
-                    iconSize="var(--font_s)"
-                    className=""
+                <ButtonGroup
+                    className={styleModule.button_group_mobile}
+                    currentActive={currentActive}
+                    setCurrentActive={setCurrentActive}
+                    vertical={true}
                 >
-                    Mapa
-                </CustomButton>
-                <CustomButton
-                    toolTip="Inspecionar"
-                    key={"Inspec."}
-                    buttonKey={"Inspec."}
-                    postIcon={<FaLaptopCode />}
-                    color={"white"}
-                    iconSize="var(--font_s)"
-                    className=""
-                >
-                    Inspec.
-                </CustomButton>
-                <CustomButton
-                    toolTip="Configurações"
-                    key={"Config."}
-                    buttonKey={"Config."}
-                    postIcon={<MdSettings />}
-                    color={"white"}
-                    iconSize="var(--font_s)"
-                    className=""
-                >
-                    Config.
-                </CustomButton>
-                <CustomButton
-                    toolTip="Sobre"
-                    key={"Sobre"}
-                    buttonKey={"Sobre"}
-                    postIcon={<MdInfo />}
-                    color={"white"}
-                    iconSize="var(--font_s)"
-                    className=""
-                >
-                    Sobre
-                </CustomButton>
+                    <CustomButton
+                        toolTip="Mapa"
+                        key={"Mapa"}
+                        buttonKey={"Mapa"}
+                        postIcon={<MdMap />}
+                        color={"white"}
+                        iconSize="var(--font_s)"
+                        className=""
+                    >
+                        Mapa
+                    </CustomButton>
+                    <CustomButton
+                        toolTip="Inspecionar"
+                        key={"Inspec."}
+                        buttonKey={"Inspec."}
+                        postIcon={<FaLaptopCode />}
+                        color={"white"}
+                        iconSize="var(--font_s)"
+                        className=""
+                    >
+                        Inspec.
+                    </CustomButton>
+                    <CustomButton
+                        toolTip="Configurações"
+                        key={"Config."}
+                        buttonKey={"Config."}
+                        postIcon={<MdSettings />}
+                        color={"white"}
+                        iconSize="var(--font_s)"
+                        className=""
+                    >
+                        Config.
+                    </CustomButton>
+                    <CustomButton
+                        toolTip="Sobre"
+                        key={"Sobre"}
+                        buttonKey={"Sobre"}
+                        postIcon={<MdInfo />}
+                        color={"white"}
+                        iconSize="var(--font_s)"
+                        className=""
+                    >
+                        Sobre
+                    </CustomButton>
+                </ButtonGroup>
             </div>
             <ButtonGroup
                 className={styleModule.button_group}
                 currentActive={currentActive}
                 setCurrentActive={setCurrentActive}
+                vertical={false}
             >
                 <CustomButton
                     toolTip="Mapa"

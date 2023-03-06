@@ -15,6 +15,10 @@
     display: flex;
 }
 
+.button_group_div_vertical {
+    flex-direction: column;
+}
+
 .button {
     background-color: transparent;
     border: none;
@@ -23,11 +27,13 @@
     width: 7em;
 }
 
-.button_active {
-    color: var(--active_color);
-    border-width: 0px 0px 2px 0px;
-    border-style: solid;
-    border-color: var(--active_color);
+.button_vertical {
+    background-color: transparent;
+    border: none;
+    color: var(--inactive_color);
+    height: 4em;
+    padding: 0 0 1vh 0;
+    width: 100%;
 }
 
 .vertical_line {
@@ -35,4 +41,18 @@
     height: 70%;
     border-radius: 1px;
     background-color: var(--divider_color);
+}
+
+.horizontal_line {
+    width: 75%;
+    height: 1.5px;
+    border-radius: 1px;
+    background-color: var(--divider_color);
+}
+
+.button_active {
+    color: var(--active_color);
+    border-width: 0px 0px 2px 0px;
+    border-style: solid;
+    border-color: var(--active_color);
 }
