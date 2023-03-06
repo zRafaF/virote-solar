@@ -57,7 +57,11 @@
         display: none;
     }
     .logo_name {
-        margin-top: 1vh;
-        text-align: center;
+        padding: 0;
+        position: absolute;
+        justify-content: center;
+        inset: 0 auto 0 auto;
+        display: flex;
+        align-items: center;
     }
 }
