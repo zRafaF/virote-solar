@@ -18,7 +18,10 @@ const Header: FC<HeaderProps> = () => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
     const getMobileMenuClassName = (): string => {
-        if (menuIsOpen) return styleModule.mobile_menu_open;
+        if (menuIsOpen)
+            return [styleModule.mobile_menu, styleModule.mobile_menu_open].join(
+                " "
+            );
         return styleModule.mobile_menu;
     };
 
