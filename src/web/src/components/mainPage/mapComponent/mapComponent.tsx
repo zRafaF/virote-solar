@@ -5,10 +5,10 @@
 
 //import ImagePlaceHolder from "./mapPlaceHolder.png";
 
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styleModule from "./mapComponent.module.css";
 
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
 import InnerComponents from "./innerComponents/innerComponents";
 
 interface MapComponentProps {}

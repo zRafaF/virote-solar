@@ -52,13 +52,11 @@
         justify-content: center;
         z-index: 33;
     }
-
     .button_group {
         visibility: hidden;
         display: none;
     }
     .connection_dropdown {
-        display: none;
     }
     .logo_name {
         padding: 0;

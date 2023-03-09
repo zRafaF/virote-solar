@@ -11,7 +11,7 @@
     height: 50px;
     width: 50px;
     right: 12px;
-    top: 90px;
+    top: 80px;
     z-index: 9990;
     border-radius: 50px;
     border-color: #000000d1;
@@ -19,7 +19,15 @@
     background-color: #ffffff;
 }
 
-.layer_toggle svg {
-    transform-origin: center;
-    scale: 1.5;
+.my_position {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    right: 12px;
+    top: 140px;
+    z-index: 9990;
+    border-radius: 50px;
+    border-color: #000000d1;
+
+    background-color: #ffffff;
 }

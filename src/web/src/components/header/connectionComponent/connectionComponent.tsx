@@ -30,6 +30,11 @@ interface ConnectionComponentProps {
 }
 
 const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
+    const openPort = async () => {
+        const port = await navigator.serial.requestPort();
+        console.log(port);
+    };
+
     return (
         <div className={className}>
             <div className={styleModule.connection_component_div}>
@@ -64,10 +69,11 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                     postIcon={<TbPlugX />}
                     color={"#EE3C3C"}
                     iconSize="var(--font_m)"
-                    toolTip="Conexão"
+                    toolTip="Conectar / Encerrar conexão"
                     className={styleModule.disconnect_button}
+                    clickCallBack={openPort}
                 >
-                    Encerrar
+                    X
                 </CustomButton>
             </div>
         </div>

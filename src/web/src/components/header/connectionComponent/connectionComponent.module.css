@@ -63,3 +63,12 @@
     font-size: var(--font_xs);
     border-radius: 10px;
 }
+
+@media (orientation: portrait) {
+    .connection_component_div {
+        visibility: hidden;
+    }
+    .disconnect_button {
+        visibility: visible;
+    }
+}
