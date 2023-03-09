@@ -65,7 +65,7 @@ const CustomButton: FC<CustomButtonProps> = ({
             className={getClassName()}
             style={buttonStyle}
             onClick={clicked}
-            href="/#"
+            href="javascript:void(0);"
             role="button"
             title={toolTip}
         >
