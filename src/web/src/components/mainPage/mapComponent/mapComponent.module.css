@@ -6,20 +6,20 @@
  */
 @import url("../../../variables.css");
 
-.layer_toggle {
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    right: 12px;
-    top: 90px;
-    z-index: 9990;
-    border-radius: 50px;
-    border-color: #000000d1;
-
-    background-color: #ffffff;
+.map_div {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-.layer_toggle svg {
-    transform-origin: center;
-    scale: 1.5;
+.target_svg {
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 31;
+    pointer-events: none;
+    stroke: rgba(255, 0, 0, 0.571);
+    stroke-width: 2;
 }

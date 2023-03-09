@@ -9,67 +9,25 @@ import React, { FC, useState } from "react";
 import styleModule from "./mapComponent.module.css";
 
 import { MapContainer, TileLayer } from "react-leaflet";
-import CustomButton from "../../customButton/customButton";
-import { MdOutlineLayers } from "react-icons/md";
-
-type mapType = "satellite" | "street";
+import InnerComponents from "./innerComponents/innerComponents";
 
 interface MapComponentProps {}
 
 const MapComponent: FC<MapComponentProps> = () => {
-    const [currentMap, setCurrentMap] = useState<mapType>("satellite");
-
-    const getTileLayer = (): JSX.Element => {
-        switch (currentMap) {
-            case "satellite": {
-                return (
-                    <TileLayer
-                        attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                        subdomains={["mt1", "mt2", "mt3"]}
-                    />
-                );
-            }
-            case "street": {
-                return (
-                    <TileLayer
-                        className="road-overlay"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                );
-            }
-            default: {
-                return (
-                    <TileLayer
-                        attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                        subdomains={["mt1", "mt2", "mt3"]}
-                    />
-                );
-            }
-        }
-    };
-
-    const toggleMap = () => {
-        if (currentMap === "satellite") setCurrentMap("street");
-        else setCurrentMap("satellite");
-    };
-
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={3} style={{ zIndex: 30 }}>
-            {getTileLayer()}
-            <CustomButton
-                toolTip="Trocar mapa"
-                key={"layerToggle"}
-                buttonKey={"layerToggle"}
-                preIcon={<MdOutlineLayers />}
-                iconSize={"var(--font_s)"}
-                className={styleModule.layer_toggle}
-                clickCallBack={toggleMap}
-                color={"black"}
-            ></CustomButton>
-        </MapContainer>
+        <div className={styleModule.map_div}>
+            <MapContainer
+                center={[51.505, -0.09]}
+                zoom={3}
+                style={{ zIndex: 30 }}
+            >
+                <InnerComponents />
+            </MapContainer>
+            <svg className={styleModule.target_svg}>
+                <line x1="0" y1="50%" x2="100%" y2="50%" />
+                <line x1="50%" y1="0" x2="50%" y2="100%" />
+            </svg>
+        </div>
     );
 };
 

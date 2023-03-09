@@ -8,6 +8,10 @@
     right: 20px;
 }
 
+.leaflet-control-attribution {
+    z-index: 9999;
+}
+
 /* .road-overlay {
     filter: contrast(1);
     filter: invert();
