@@ -11,6 +11,8 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
 import { TbPlugX } from "react-icons/tb";
+import { eel } from "../../../App";
+import { toast } from "react-toastify";
 
 const comOptions = [" ", "COM 0", "COM 1", "COM 2"];
 const baudOptions = [
@@ -29,10 +31,29 @@ interface ConnectionComponentProps {
     className?: string;
 }
 
+type PortType = {
+    port: string;
+    desc: string;
+};
+
+async function getAvailablePorts(): Promise<any> {
+    try {
+        const eelReturn: any = JSON.parse(eel.get_available_ports_list()());
+        console.log(eelReturn);
+        return eelReturn;
+    } catch (error) {
+        toast.error("Não foi possível receber a lista de portas");
+        return [];
+    }
+}
+
 const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
     const openPort = async () => {
-        const port = await navigator.serial.requestPort();
-        console.log(port);
+        //const port = await navigator.serial.requestPort();
+        //console.log(port);
+        getAvailablePorts().then((response) => {
+            console.log(response);
+        });
     };
 
     return (
