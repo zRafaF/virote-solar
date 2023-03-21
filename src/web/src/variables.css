@@ -9,7 +9,12 @@ html {
     --primary_color: #5d6470;
     --secondary_color: #6c7077;
     --font_color: #5d6470;
+    --faded_font_color: #dcddde;
+    --detail_color: #51555c;
     --font_color_inverted: #ffffff;
+
+    --positive_color: #07ed1e;
+    --negative_color: #ee3c3c;
 
     --font_xxs: 1em;
     --font_xs: 1.2em;
