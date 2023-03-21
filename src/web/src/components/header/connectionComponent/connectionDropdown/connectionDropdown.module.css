@@ -1,0 +1,77 @@
+/**
+ * Copyright (c) 2023 Rafael F. Meneses
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+@import url("../../../../variables.css");
+
+.connection_dropdown_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--font_color_inverted);
+    font-size: var(--font_s);
+    height: 100%;
+    width: 100%;
+    background-color: var(--detail_color);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 15px 15px;
+}
+
+.connection_dropdown_place_holder {
+    height: 2.5vh;
+    width: 2.5vw;
+}
+
+.connection_dropdown {
+    font-size: var(--font_xxs);
+    white-space: nowrap;
+    transition-duration: var(--animation_fast);
+}
+
+.connection_dropdown_div .connection_dropdown_control {
+    color: white;
+    border: none;
+    background-color: #00000034;
+}
+
+.connection_dropdown:hover {
+    background-color: #00000057;
+}
+.connection_dropdown:active {
+    transform: scale(0.9);
+}
+
+.connection_dropdown_menu {
+    transition-duration: var(--animation_fast);
+    animation: slide-in var(--animation_slow);
+}
+
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.disconnect_button {
+    display: flex;
+    background-color: #721616;
+    border-color: #ee3c3c;
+    border-style: solid;
+    font-size: var(--font_xs);
+    border-radius: 10px;
+}
+
+@media (orientation: portrait) {
+    .connection_component_div {
+        visibility: hidden;
+    }
+    .disconnect_button {
+        visibility: visible;
+    }
+}

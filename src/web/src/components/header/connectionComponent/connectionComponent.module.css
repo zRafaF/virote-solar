@@ -4,71 +4,35 @@
  * This software is released under the MIT License.
  * https://opensource.org/licenses/MIT
  */
-
 @import url("../../../variables.css");
 
-.connection_component_div {
+.connection_menu_button {
+    --border_color: var(--negative_color);
     display: flex;
-    float: left;
-    align-items: center;
-    color: var(--font_color_inverted);
+    background-color: var(--detail_color);
+    border-color: var(--border_color);
+    border-bottom: 3px solid var(--border_color);
     font-size: var(--font_s);
-    height: 100%;
-    width: 100%;
-}
-
-.connection_dropdown_place_holder {
-    height: 2.5vh;
-    width: 2.5vw;
-}
-
-.connection_dropdown {
-    font-size: var(--font_xxs);
-    white-space: nowrap;
-    transition-duration: var(--animation_fast);
-}
-
-.connection_component_div .connection_dropdown_control {
-    color: white;
-    border: none;
-    background-color: #00000034;
-}
-
-.connection_dropdown:hover {
-    background-color: #00000057;
-}
-.connection_dropdown:active {
-    transform: scale(0.9);
-}
-
-.connection_dropdown_menu {
-    transition-duration: var(--animation_fast);
-    animation: slide-in var(--animation_slow);
-}
-
-@keyframes slide-in {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.disconnect_button {
-    display: flex;
-    background-color: #721616;
-    border-color: #ee3c3c;
-    border-style: solid;
-    font-size: var(--font_xs);
     border-radius: 10px;
+    height: 5vh;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
-@media (orientation: portrait) {
-    .connection_component_div {
-        visibility: hidden;
-    }
-    .disconnect_button {
-        visibility: visible;
-    }
+.dropdown_active {
+    display: flex;
+    position: fixed;
+    top: 8vh;
+    top: 8svh;
+
+    height: 30vh;
+    right: 0;
+    width: 280px;
+}
+
+.dropdown_inactive {
+    display: none;
 }

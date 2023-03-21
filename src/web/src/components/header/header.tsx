@@ -123,7 +123,7 @@ const Header: FC<HeaderProps> = () => {
                     key={"Mapa"}
                     buttonKey={"Mapa"}
                     postIcon={<MdMap />}
-                    color={"white"}
+                    color={"var(--faded_font_color)"}
                     iconSize="var(--font_s)"
                     className=""
                 >
@@ -134,7 +134,7 @@ const Header: FC<HeaderProps> = () => {
                     key={"Inspec."}
                     buttonKey={"Inspec."}
                     postIcon={<FaLaptopCode />}
-                    color={"white"}
+                    color={"var(--faded_font_color)"}
                     iconSize="var(--font_s)"
                     className=""
                 >
@@ -145,7 +145,7 @@ const Header: FC<HeaderProps> = () => {
                     key={"Config."}
                     buttonKey={"Config."}
                     postIcon={<MdSettings />}
-                    color={"white"}
+                    color={"var(--faded_font_color)"}
                     iconSize="var(--font_s)"
                     className=""
                 >
@@ -156,7 +156,7 @@ const Header: FC<HeaderProps> = () => {
                     key={"Sobre"}
                     buttonKey={"Sobre"}
                     postIcon={<MdInfo />}
-                    color={"white"}
+                    color={"var(--faded_font_color)"}
                     iconSize="var(--font_s)"
                     className=""
                 >
