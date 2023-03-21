@@ -31,16 +31,15 @@ interface ConnectionComponentProps {
     className?: string;
 }
 
+// Defines the return type from the JSON received from eel
 type PortType = {
     port: string;
     desc: string;
 };
 
-async function getAvailablePorts(): Promise<any> {
+async function getAvailablePorts(): Promise<PortType[]> {
     try {
-        const eelReturn: any = JSON.parse(eel.get_available_ports_list()());
-        console.log(eelReturn);
-        return eelReturn;
+        return await eel.get_available_ports_list()();
     } catch (error) {
         toast.error("Não foi possível receber a lista de portas");
         return [];
@@ -49,6 +48,7 @@ async function getAvailablePorts(): Promise<any> {
 
 const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
     const openPort = async () => {
+        // The following line selects a serial port from the browser API
         //const port = await navigator.serial.requestPort();
         //console.log(port);
         getAvailablePorts().then((response) => {
