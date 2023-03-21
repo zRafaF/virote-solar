@@ -31,7 +31,7 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
                 postIcon={<TbPlugConnected />}
                 color={"var(--faded_font_color)"}
                 iconSize="var(--font_m)"
-                toolTip="Abrir menu de conexão"
+                toolTip="[Abrir / Fechar] menu de conexão"
                 className={styleModule.connection_menu_button}
                 clickCallBack={toggleDropdown}
             >

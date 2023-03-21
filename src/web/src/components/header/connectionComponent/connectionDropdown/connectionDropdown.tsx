@@ -83,7 +83,7 @@ const ConnectionDropdown: FC<ConnectionDropdownProps> = () => {
                 postIcon={<TbPlugX />}
                 color={"#EE3C3C"}
                 iconSize="var(--font_m)"
-                toolTip="Conectar / Encerrar conexão"
+                toolTip="[Iniciar / Encerrar] conexão"
                 className={styleModule.disconnect_button}
                 clickCallBack={openPort}
             >
