@@ -31,8 +31,11 @@
     height: 30vh;
     right: 0;
     width: 280px;
+    transform: translateX(0);
 }
 
 .dropdown_inactive {
-    display: none;
+    position: fixed;
+
+    transform: translateX(200%);
 }
