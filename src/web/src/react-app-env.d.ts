@@ -12,4 +12,10 @@ interface Navigator {
 
 declare var navigator: Navigator;
 
+// Defines the return type from the JSON received from eel
+type PortType = {
+    port: string;
+    desc: string;
+};
+
 //declare module "*.module.css";
