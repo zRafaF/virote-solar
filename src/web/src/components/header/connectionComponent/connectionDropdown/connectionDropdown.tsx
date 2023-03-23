@@ -12,6 +12,7 @@ import "react-dropdown/style.css";
 import { eel } from "../../../../App";
 import { toast } from "react-toastify";
 import { TbPlugX } from "react-icons/tb";
+import { MdRefresh } from "react-icons/md";
 
 const comOptions = [" ", "COM 0", "COM 1", "COM 2"];
 const baudOptions = [
@@ -27,12 +28,6 @@ const baudOptions = [
 ];
 
 interface ConnectionDropdownProps {}
-
-// Defines the return type from the JSON received from eel
-type PortType = {
-    port: string;
-    desc: string;
-};
 
 async function getAvailablePorts(): Promise<PortType[]> {
     try {
@@ -55,6 +50,18 @@ const ConnectionDropdown: FC<ConnectionDropdownProps> = () => {
 
     return (
         <div className={styleModule.connection_dropdown_div}>
+            <CustomButton
+                key={"Refresh"}
+                buttonKey={"Refresh"}
+                postIcon={<MdRefresh />}
+                color={"var(--detail_color)"}
+                iconSize="var(--font_m)"
+                toolTip="Atualizar lista de dispositivos"
+                className={styleModule.refresh_button}
+                clickCallBack={openPort}
+            >
+                Atualizar
+            </CustomButton>
             Porta&nbsp;
             <Dropdown
                 options={comOptions}

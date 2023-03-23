@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./App.css";
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MainPage from "./components/mainPage/mainPage";
 import Header from "./components/header/header";
+import GlobalAccessContext, {
+    globalAccessDefault,
+} from "./contexts/globalAccessContext";
 
 export const eel = window.eel;
 try {
@@ -23,14 +26,16 @@ async function callEelFunc() {
 callEelFunc();
 
 function App() {
+    const [globalAccess, setGlobalAccess] = useState(globalAccessDefault);
+
     return (
-        <React.Fragment>
+        <GlobalAccessContext.Provider value={[globalAccess, setGlobalAccess]}>
             <div className="App">
                 <Header data-testid="AppHeader"></Header>
                 <MainPage data-testid="AppMainPage"></MainPage>
             </div>
             <ToastContainer className="toast_notify" transition={Zoom} />
-        </React.Fragment>
+        </GlobalAccessContext.Provider>
     );
 }
 

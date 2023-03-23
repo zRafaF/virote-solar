@@ -67,6 +67,13 @@
     border-radius: 10px;
 }
 
+.refresh_button {
+    background-color: #ffffff;
+    font-size: var(--font_xs);
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
 @media (orientation: portrait) {
     .connection_component_div {
         visibility: hidden;
