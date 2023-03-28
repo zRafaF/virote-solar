@@ -22,13 +22,13 @@
 
 .connection_dropdown_place_holder {
     height: 2.5vh;
-    width: 2.5vw;
 }
 
 .connection_dropdown {
     font-size: var(--font_xxs);
     white-space: nowrap;
     transition-duration: var(--animation_fast);
+    width: 70%;
 }
 
 .connection_dropdown_div .connection_dropdown_control {
@@ -41,7 +41,7 @@
     background-color: #00000057;
 }
 .connection_dropdown:active {
-    transform: scale(0.9);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .connection_dropdown_menu {

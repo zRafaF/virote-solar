@@ -18,4 +18,8 @@ type PortType = {
     desc: string;
 };
 
+interface globalAccessInterface {
+    //(): void;
+    ports: PortType[];
+}
 //declare module "*.module.css";

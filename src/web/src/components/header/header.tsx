@@ -130,15 +130,15 @@ const Header: FC<HeaderProps> = () => {
                     Mapa
                 </CustomButton>
                 <CustomButton
-                    toolTip="Inspecionar"
-                    key={"Inspec."}
-                    buttonKey={"Inspec."}
+                    toolTip="Status"
+                    key={"Status"}
+                    buttonKey={"Status"}
                     postIcon={<FaLaptopCode />}
                     color={"var(--faded_font_color)"}
                     iconSize="var(--font_s)"
                     className=""
                 >
-                    Inspec.
+                    Status
                 </CustomButton>
                 <CustomButton
                     toolTip="Configurações"
