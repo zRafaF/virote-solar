@@ -9,9 +9,20 @@ import styleModule from "./connectionComponent.module.css";
 import CustomButton from "../../customButton/customButton";
 import ConnectionDropdown from "./connectionDropdown/connectionDropdown";
 import { TbPlugConnected } from "react-icons/tb";
+import { eel } from "../../../App";
+import { toast } from "react-toastify";
 
 interface ConnectionComponentProps {
     className?: string;
+}
+
+async function getHearthBeat(): Promise<boolean> {
+    try {
+        return await eel.hearth_beat()();
+    } catch (error) {
+        toast.error("Backend não está disponível");
+        return false;
+    }
 }
 
 const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
@@ -21,7 +32,12 @@ const ConnectionComponent: FC<ConnectionComponentProps> = ({ className }) => {
         return styleModule.dropdown_inactive;
     };
     const toggleDropdown = () => {
-        setDropdownIsActive(!dropdownIsActive);
+        getHearthBeat().then((response) => {
+            if (response) {
+                setDropdownIsActive(!dropdownIsActive);
+                return;
+            }
+        });
     };
     return (
         <div className={className}>

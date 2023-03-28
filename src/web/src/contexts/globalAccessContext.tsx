@@ -4,15 +4,6 @@
 // https://opensource.org/licenses/MIT
 import { createContext } from "react";
 
-function alertMyself() {
-    alert(20);
-}
-
-interface globalAccessInterface {
-    //(): void;
-    ports: PortType[];
-}
-
 export const globalAccessDefault: globalAccessInterface = {
     //updatePortList: alertMyself(),
     ports: [],

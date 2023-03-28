@@ -16,3 +16,8 @@ def get_available_ports_list():
         ports_dict.append({"port": port, "desc": desc})
     print(ports_dict)
     return ports_dict
+
+
+@eel.expose
+def hearth_beat():
+    return True

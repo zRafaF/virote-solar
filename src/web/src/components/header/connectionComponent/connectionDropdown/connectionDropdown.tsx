@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { FC } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import styleModule from "./connectionDropdown.module.css";
 
 import CustomButton from "../../../customButton/customButton";
@@ -13,18 +13,26 @@ import { eel } from "../../../../App";
 import { toast } from "react-toastify";
 import { TbPlugX } from "react-icons/tb";
 import { MdRefresh } from "react-icons/md";
+import GlobalAccessContext from "../../../../contexts/globalAccessContext";
 
-const comOptions = [" ", "COM 0", "COM 1", "COM 2"];
-const baudOptions = [
-    " ",
+const baudRates = [
+    "1200",
+    "1800",
+    "2400",
     "4800",
     "9600",
-    "14400",
     "19200",
     "38400",
     "57600",
     "115200",
-    "128000",
+    "230400",
+    "460800",
+    "500000",
+    "576000",
+    "921600",
+    "1000000",
+    "1152000",
+    "1500000",
 ];
 
 interface ConnectionDropdownProps {}
@@ -39,13 +47,44 @@ async function getAvailablePorts(): Promise<PortType[]> {
 }
 
 const ConnectionDropdown: FC<ConnectionDropdownProps> = () => {
+    const [globalAccess, setGlobalAccess] = useContext(GlobalAccessContext);
     const openPort = async () => {
         // The following line selects a serial port from the browser API
         //const port = await navigator.serial.requestPort();
         //console.log(port);
-        getAvailablePorts().then((response) => {
-            console.log(response);
+
+        alert("nada ainda");
+    };
+
+    const refreshPortsList = async () => {
+        toast.promise(
+            getAvailablePorts().then((response) => {
+                let globalCopy: globalAccessInterface = { ...globalAccess };
+                globalCopy.ports = response;
+                setGlobalAccess(globalCopy);
+            }),
+            {
+                pending: "Atualizando lista de portas",
+                success: "Lista de portas atualizada 👌",
+                error: "Não foi possível atualizar a lista de portas 🤯",
+            },
+            { autoClose: 5000, draggable: true, closeOnClick: true }
+        );
+    };
+
+    useEffect(() => {
+        refreshPortsList();
+    }, []);
+
+    const getComOptions = (): string[] => {
+        let resultArray: string[] = [];
+
+        globalAccess.ports.forEach((element: PortType) => {
+            resultArray.push(element.port + " | " + element.desc);
+            console.log(element);
         });
+
+        return resultArray;
     };
 
     return (
@@ -58,13 +97,13 @@ const ConnectionDropdown: FC<ConnectionDropdownProps> = () => {
                 iconSize="var(--font_m)"
                 toolTip="Atualizar lista de dispositivos"
                 className={styleModule.refresh_button}
-                clickCallBack={openPort}
+                clickCallBack={refreshPortsList}
             >
                 Atualizar
             </CustomButton>
             Porta&nbsp;
             <Dropdown
-                options={comOptions}
+                options={getComOptions()}
                 placeholderClassName={
                     styleModule.connection_dropdown_place_holder
                 }
@@ -75,7 +114,7 @@ const ConnectionDropdown: FC<ConnectionDropdownProps> = () => {
             />
             &nbsp;Baud&nbsp;
             <Dropdown
-                options={baudOptions}
+                options={baudRates}
                 placeholderClassName={
                     styleModule.connection_dropdown_place_holder
                 }
