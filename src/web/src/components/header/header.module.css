@@ -73,6 +73,8 @@
         left: 0;
     }
 
+    
+
     .mobile_menu {
         border-top: 1px solid #a8a8a8;
         display: block;
@@ -92,6 +94,8 @@
         animation-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.7);
         animation-fill-mode: forwards;
     }
+
+
 
     @keyframes slide-out {
         0% {

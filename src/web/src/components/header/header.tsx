@@ -5,8 +5,7 @@
 import { FC, Key, useState, useEffect } from "react";
 import styleModule from "./header.module.css";
 
-import { FaLaptopCode } from "react-icons/fa";
-import { MdMap, MdSettings, MdInfo, MdMenu } from "react-icons/md";
+import { MdMap, MdSettings, MdInfo, MdMenu, MdAnalytics } from "react-icons/md";
 import CustomButton from "../customButton/customButton";
 import ButtonGroup from "../buttonGroup/buttonGroup";
 import ConnectionComponent from "./connectionComponent/connectionComponent";
@@ -81,12 +80,12 @@ const Header: FC<HeaderProps> = () => {
                         toolTip="Inspecionar"
                         key={"Inspec."}
                         buttonKey={"Inspec."}
-                        postIcon={<FaLaptopCode />}
+                        postIcon={<MdAnalytics />}
                         color={"white"}
                         iconSize="var(--font_s)"
                         className=""
                     >
-                        Inspec.
+                        Inspecionar
                     </CustomButton>
                     <CustomButton
                         toolTip="Configurações"
@@ -97,7 +96,7 @@ const Header: FC<HeaderProps> = () => {
                         iconSize="var(--font_s)"
                         className=""
                     >
-                        Config.
+                        Configuração
                     </CustomButton>
                     <CustomButton
                         toolTip="Sobre"
@@ -133,7 +132,7 @@ const Header: FC<HeaderProps> = () => {
                     toolTip="Status"
                     key={"Status"}
                     buttonKey={"Status"}
-                    postIcon={<FaLaptopCode />}
+                    postIcon={<MdAnalytics />}
                     color={"var(--faded_font_color)"}
                     iconSize="var(--font_s)"
                     className=""

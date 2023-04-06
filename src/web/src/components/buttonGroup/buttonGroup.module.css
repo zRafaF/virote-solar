@@ -19,6 +19,7 @@
     flex-direction: column;
 }
 
+
 .button {
     background-color: transparent;
     border: none;
@@ -32,8 +33,11 @@
     border: none;
     color: var(--inactive_color);
     height: 4em;
+    width: stretch;
+    justify-content: left;
     padding: 0 0 1vh 0;
-    width: 100%;
+    padding-left: 10%;
+
 }
 
 .vertical_line {
