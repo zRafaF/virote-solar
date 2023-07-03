@@ -2,12 +2,15 @@ import React, { useState } from "react";
 
 import "./App.css";
 import { ToastContainer, toast, Zoom } from "react-toastify";
+import { Routes, Route, HashRouter } from "react-router-dom";
+
 import "react-toastify/dist/ReactToastify.css";
-import MainPage from "./components/mainPage/mainPage";
 import Header from "./components/header/header";
 import GlobalAccessContext, {
     globalAccessDefault,
 } from "./contexts/globalAccessContext";
+import Home from "./pages/Home";
+import HeaderMui from "./components/headerMui/headerMui";
 
 export const eel = window.eel;
 try {
@@ -31,8 +34,12 @@ function App() {
     return (
         <GlobalAccessContext.Provider value={[globalAccess, setGlobalAccess]}>
             <div className="App">
-                <Header data-testid="AppHeader"></Header>
-                <MainPage data-testid="AppMainPage"></MainPage>
+                <HashRouter>
+                    <HeaderMui></HeaderMui>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </HashRouter>
             </div>
             <ToastContainer className="toast_notify" transition={Zoom} />
         </GlobalAccessContext.Provider>

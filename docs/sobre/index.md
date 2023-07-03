@@ -65,6 +65,9 @@ Este software é distribuído sobre a **[MIT License](https://mit-license.org/)*
 
 * React Leaflet - [ver licença](https://github.com/PaulLeCam/react-leaflet/blob/master/LICENSE.md)
 
+* Material UI - [ver licença](https://github.com/mui/material-ui/blob/master/LICENSE)
+
+
 ___
 
 Agradecemos do fundo do coração todos os autores dos diferentes projetos utilizados, **software livre** é liberdade, muito obrigado a todos.

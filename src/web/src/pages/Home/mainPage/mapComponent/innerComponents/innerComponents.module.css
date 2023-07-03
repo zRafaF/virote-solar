@@ -1,0 +1,33 @@
+/**
+ * Copyright (c) 2023 Rafael F. Meneses
+ * 
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+@import url("../../../../../variables.css");
+
+.layer_toggle {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    right: 12px;
+    top: 80px;
+    z-index: 9990;
+    border-radius: 50px;
+    border-color: #000000d1;
+
+    background-color: #ffffff;
+}
+
+.my_position {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    right: 12px;
+    top: 140px;
+    z-index: 9990;
+    border-radius: 50px;
+    border-color: #000000d1;
+
+    background-color: #ffffff;
+}
