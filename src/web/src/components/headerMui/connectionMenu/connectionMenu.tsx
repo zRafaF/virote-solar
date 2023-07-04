@@ -42,12 +42,7 @@ const baudRates = [
     "1500000",
 ];
 async function getAvailablePorts(): Promise<PortType[]> {
-    try {
-        return await eel.get_available_ports_list()();
-    } catch (error) {
-        toast.error("Não foi possível receber a lista de portas");
-        return [];
-    }
+    return eel.get_available_ports_list()();
 }
 
 const ITEM_HEIGHT = 48;
@@ -83,11 +78,18 @@ const ConnectionMenu: FunctionComponent<connectionMenuProps> = () => {
                 }));
             }),
             {
-                pending: "Atualizando lista de portas",
+                pending: {
+                    render: "Atualizando lista de portas...",
+                    delay: undefined,
+                },
                 success: "Lista de portas atualizada 👌",
                 error: "Não foi possível atualizar a lista de portas 🤯",
             },
-            { autoClose: 2000, draggable: true, closeOnClick: true }
+            {
+                autoClose: 2000,
+                draggable: true,
+                closeOnClick: true,
+            }
         );
     };
 
