@@ -27,3 +27,4 @@ node_modules/
 venv/
 .prettierignore
 src/__pycache__
+site/
