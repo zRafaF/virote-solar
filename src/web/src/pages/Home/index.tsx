@@ -10,7 +10,7 @@ import { Box } from "@mui/material";
 import MenuContent from "./menuContent/menuContent";
 import BottomMenu from "./bottomMenu/bottomMenu";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 interface HomeProps {}
 

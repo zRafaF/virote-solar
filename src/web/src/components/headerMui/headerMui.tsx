@@ -6,8 +6,6 @@
 import {
     AppBar,
     Box,
-    Button,
-    ButtonGroup,
     Container,
     Divider,
     Drawer,
@@ -16,11 +14,15 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
+    Tab,
+    Tabs,
     ThemeProvider,
     Toolbar,
     Tooltip,
     Typography,
     createTheme,
+    useMediaQuery,
+    useTheme,
 } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -47,6 +49,14 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+    const theme = useTheme();
+    const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
+
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
     };
 
     const drawer = (
@@ -100,7 +110,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                     <Toolbar disableGutters>
                         <ExploreIcon
                             sx={{
-                                display: { xs: "none", md: "flex" },
+                                display: { xs: "none", sm: "flex" },
                                 mr: 1,
                             }}
                         />
@@ -111,7 +121,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                             to={"/"}
                             sx={{
                                 mr: 2,
-                                display: { xs: "none", md: "flex" },
+                                display: { xs: "none", sm: "flex" },
                                 fontFamily: "righteous",
                                 fontWeight: 500,
                                 color: "inherit",
@@ -123,7 +133,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                         <Box
                             sx={{
                                 flexGrow: 1,
-                                display: { xs: "flex", md: "none" },
+                                display: { xs: "flex", sm: "none" },
                             }}
                         >
                             <IconButton
@@ -139,7 +149,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                         </Box>
                         <ExploreIcon
                             sx={{
-                                display: { xs: "flex", md: "none" },
+                                display: { xs: "flex", sm: "none" },
                                 mr: 1,
                             }}
                         />
@@ -150,7 +160,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                             to={"/"}
                             sx={{
                                 mr: 2,
-                                display: { xs: "flex", md: "none" },
+                                display: { xs: "flex", sm: "none" },
                                 flexGrow: 1,
                                 fontFamily: "righteous",
                                 fontWeight: 500,
@@ -163,61 +173,76 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                         <Box
                             sx={{
                                 flexGrow: 1,
-                                display: { xs: "none", md: "flex" },
+                                display: { xs: "none", sm: "flex" },
                                 color: "white",
-                                ml: { md: 0, lg: 6 },
+                                ml: { sm: 0, lg: 6 },
                                 justifyContent: {
-                                    md: "center",
+                                    sm: "center",
                                     lg: "left",
                                 },
                             }}
                         >
-                            <ButtonGroup
-                                variant="text"
-                                aria-label="button group"
-                                color="primary"
+                            <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                aria-label="nav tabs example"
+                                indicatorColor="primary"
+                                textColor="primary"
                             >
                                 <Tooltip title="Página de criação de missão">
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<MapIcon />}
+                                    <Tab
                                         component={Link}
                                         to={"/"}
-                                    >
-                                        Mapa
-                                    </Button>
+                                        label={lessThanMd ? "" : "Mapa"}
+                                        icon={<MapIcon />}
+                                        iconPosition="start"
+                                    />
                                 </Tooltip>
+
+                                <Divider
+                                    orientation="vertical"
+                                    variant="middle"
+                                    flexItem
+                                />
+
                                 <Tooltip title="Página de status">
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<AnalyticsIcon />}
+                                    <Tab
                                         component={Link}
                                         to={"status"}
-                                    >
-                                        Status
-                                    </Button>
+                                        label={lessThanMd ? "" : "Status"}
+                                        icon={<AnalyticsIcon />}
+                                        iconPosition="start"
+                                    />
                                 </Tooltip>
+                                <Divider
+                                    orientation="vertical"
+                                    variant="middle"
+                                    flexItem
+                                />
                                 <Tooltip title="Página de configurações">
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<SettingsIcon />}
+                                    <Tab
                                         component={Link}
                                         to={"config"}
-                                    >
-                                        Config.
-                                    </Button>
+                                        label={lessThanMd ? "" : "Config."}
+                                        icon={<SettingsIcon />}
+                                        iconPosition="start"
+                                    />
                                 </Tooltip>
+                                <Divider
+                                    orientation="vertical"
+                                    variant="middle"
+                                    flexItem
+                                />
                                 <Tooltip title="Página de informações sobre a aplicação">
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<InfoIcon />}
+                                    <Tab
                                         component={Link}
                                         to={"sobre"}
-                                    >
-                                        Sobre
-                                    </Button>
+                                        label={lessThanMd ? "" : "Sobre"}
+                                        icon={<InfoIcon />}
+                                        iconPosition="start"
+                                    />
                                 </Tooltip>
-                            </ButtonGroup>
+                            </Tabs>
                         </Box>
                         <Box sx={{ flexGrow: 0 }}>
                             <ConnectionMenu />
@@ -241,7 +266,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { sm: "block", md: "none" },
+                        display: { xs: "block", sm: "none" },
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
                             width: drawerWidth,

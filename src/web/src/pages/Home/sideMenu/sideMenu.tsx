@@ -28,7 +28,7 @@ const SideMenu: FC<SideMenuProps> = ({ drawerWidth, children }) => {
                     top: 0,
                     left: drawerWidth,
                     transformOrigin: "left",
-                    zIndex: 31,
+                    zIndex: 1,
                 }}
             >
                 <SideBarWave />
