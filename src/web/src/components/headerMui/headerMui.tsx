@@ -31,8 +31,8 @@ import MapIcon from "@mui/icons-material/Map";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import SettingsIcon from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Info";
-import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import { Link } from "react-router-dom";
+import ConnectionMenu from "./connectionMenu/connectionMenu";
 
 const drawerWidth = 240;
 const darkTheme = createTheme({
@@ -221,15 +221,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                 </ButtonGroup>
                             </Box>
                             <Box sx={{ flexGrow: 0 }}>
-                                <Tooltip title="Abrir configurações de conexão">
-                                    <Button
-                                        variant="contained"
-                                        color="error"
-                                        endIcon={<ElectricalServicesIcon />}
-                                    >
-                                        Conexão
-                                    </Button>
-                                </Tooltip>
+                                <ConnectionMenu />
                             </Box>
                         </Toolbar>
                     </Container>
