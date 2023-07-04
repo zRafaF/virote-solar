@@ -18,9 +18,9 @@ import React, { FunctionComponent, useContext, useEffect } from "react";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import GlobalAccessContext from "contexts/globalAccessContext";
 import { toast } from "react-toastify";
-import { eel } from "App";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import PowerIcon from "@mui/icons-material/Power";
+import { getAvailablePorts } from "helper/api";
 
 const baudRates = [
     "1200",
@@ -41,9 +41,6 @@ const baudRates = [
     "1152000",
     "1500000",
 ];
-async function getAvailablePorts(): Promise<PortType[]> {
-    return eel.get_available_ports_list()();
-}
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

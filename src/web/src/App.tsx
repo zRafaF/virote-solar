@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./App.css";
-import { ToastContainer, toast, Zoom } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import { Routes, Route, HashRouter } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -14,20 +14,9 @@ import Status from "pages/Status";
 import Config from "pages/Config";
 import Sobre from "pages/Sobre";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { callEelFunc } from "helper/api";
 
-export const eel = window.eel;
-try {
-    eel.set_host("ws://localhost:8080");
-    toast.success("Conexão estabelecida");
-} catch {
-    toast.error("Não foi possível conectar com o backend");
-}
-
-async function callEelFunc() {
-    try {
-        eel.my_func();
-    } catch (error) {}
-}
+require("./helper/api");
 
 callEelFunc();
 
