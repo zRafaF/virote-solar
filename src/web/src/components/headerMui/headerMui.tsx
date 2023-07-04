@@ -8,12 +8,7 @@ import {
     Box,
     Container,
     Divider,
-    Drawer,
     IconButton,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
     Tab,
     Tabs,
     ThemeProvider,
@@ -35,11 +30,16 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Info";
 import { Link } from "react-router-dom";
 import ConnectionMenu from "./connectionMenu/connectionMenu";
+import MobileDrawer from "./mobileDrawer/mobileDrawer";
 
-const drawerWidth = 240;
+const tabHeight = 48;
+
 const darkTheme = createTheme({
     palette: {
         mode: "dark",
+        secondary: {
+            main: "#ffffff",
+        },
     },
 });
 
@@ -47,65 +47,19 @@ interface HeaderMuiProps {}
 
 const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
 
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
-    const drawer = (
-        <div>
-            <Toolbar />
-            <Divider />
-            <List>
-                <ListItem disablePadding>
-                    <ListItem button component={Link} to={"/"}>
-                        <ListItemIcon>
-                            <MapIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Mapa" />
-                    </ListItem>
-                </ListItem>
-
-                <ListItem disablePadding>
-                    <ListItem button component={Link} to={"status"}>
-                        <ListItemIcon>
-                            <AnalyticsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Status" />
-                    </ListItem>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItem button component={Link} to={"config"}>
-                        <ListItemIcon>
-                            <SettingsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Config." />
-                    </ListItem>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItem button component={Link} to={"sobre"}>
-                        <ListItemIcon>
-                            <InfoIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Sobre" />
-                    </ListItem>
-                </ListItem>
-            </List>
-
-            <Divider />
-        </div>
-    );
-
     return (
         <ThemeProvider theme={darkTheme}>
-            <AppBar position="static" sx={{ zIndex: 9999 }}>
+            <AppBar position="static">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <ExploreIcon
@@ -141,7 +95,9 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                 aria-label="account of current user"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
-                                onClick={handleDrawerToggle}
+                                onClick={() => {
+                                    setMobileOpen(true);
+                                }}
                                 color="inherit"
                             >
                                 <MenuIcon />
@@ -186,16 +142,28 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                 value={value}
                                 onChange={handleChange}
                                 aria-label="nav tabs example"
-                                indicatorColor="primary"
-                                textColor="primary"
+                                indicatorColor="secondary"
+                                textColor="secondary"
+                                sx={{
+                                    minHeight: tabHeight,
+                                    height: tabHeight,
+                                }}
                             >
-                                <Tooltip title="Página de criação de missão">
+                                <Tooltip
+                                    title="Página de criação de missão"
+                                    arrow
+                                >
                                     <Tab
                                         component={Link}
                                         to={"/"}
                                         label={lessThanMd ? "" : "Mapa"}
                                         icon={<MapIcon />}
                                         iconPosition="start"
+                                        sx={{
+                                            minWidth: 70,
+                                            minHeight: tabHeight,
+                                            height: tabHeight,
+                                        }}
                                     />
                                 </Tooltip>
 
@@ -205,13 +173,18 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                     flexItem
                                 />
 
-                                <Tooltip title="Página de status">
+                                <Tooltip title="Página de status" arrow>
                                     <Tab
                                         component={Link}
                                         to={"status"}
                                         label={lessThanMd ? "" : "Status"}
                                         icon={<AnalyticsIcon />}
                                         iconPosition="start"
+                                        sx={{
+                                            minWidth: 70,
+                                            minHeight: tabHeight,
+                                            height: tabHeight,
+                                        }}
                                     />
                                 </Tooltip>
                                 <Divider
@@ -219,13 +192,18 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                     variant="middle"
                                     flexItem
                                 />
-                                <Tooltip title="Página de configurações">
+                                <Tooltip title="Página de configurações" arrow>
                                     <Tab
                                         component={Link}
                                         to={"config"}
                                         label={lessThanMd ? "" : "Config."}
                                         icon={<SettingsIcon />}
                                         iconPosition="start"
+                                        sx={{
+                                            minWidth: 70,
+                                            minHeight: tabHeight,
+                                            height: tabHeight,
+                                        }}
                                     />
                                 </Tooltip>
                                 <Divider
@@ -233,13 +211,21 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                     variant="middle"
                                     flexItem
                                 />
-                                <Tooltip title="Página de informações sobre a aplicação">
+                                <Tooltip
+                                    title="Página de informações sobre a aplicação"
+                                    arrow
+                                >
                                     <Tab
                                         component={Link}
                                         to={"sobre"}
                                         label={lessThanMd ? "" : "Sobre"}
                                         icon={<InfoIcon />}
                                         iconPosition="start"
+                                        sx={{
+                                            minWidth: 70,
+                                            minHeight: tabHeight,
+                                            height: tabHeight,
+                                        }}
                                     />
                                 </Tooltip>
                             </Tabs>
@@ -250,33 +236,8 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Box
-                component="nav"
-                sx={{
-                    width: { sm: drawerWidth },
-                    flexShrink: { sm: 0 },
-                }}
-                aria-label="mailbox folders"
-            >
-                <Drawer
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: "block", sm: "none" },
-                        "& .MuiDrawer-paper": {
-                            boxSizing: "border-box",
-                            width: drawerWidth,
-                            height: "100%",
-                        },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-            </Box>
+
+            <MobileDrawer open={mobileOpen} setOpen={setMobileOpen} />
         </ThemeProvider>
     );
 };

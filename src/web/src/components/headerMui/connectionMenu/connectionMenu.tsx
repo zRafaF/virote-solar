@@ -153,10 +153,9 @@ const ConnectionMenu: FunctionComponent<connectionMenuProps> = () => {
                     <Stack spacing={3}>
                         <Button
                             variant="outlined"
-                            color="success"
+                            color="secondary"
                             onClick={refreshPortsList}
                             endIcon={<RefreshIcon />}
-                            size="large"
                         >
                             Atualizar portas
                         </Button>
@@ -206,6 +205,7 @@ const ConnectionMenu: FunctionComponent<connectionMenuProps> = () => {
                             variant="contained"
                             endIcon={<PowerIcon />}
                             size="large"
+                            color="success"
                         >
                             Conectar
                         </Button>
