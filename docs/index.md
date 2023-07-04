@@ -1,6 +1,6 @@
 # Home
 
-## Acesse o [Front-end AQUI!](src/web/build/index.html)
+## Acesse o [Front-end AQUI!](https://zrafaf.github.io/virote/build/)
 > Essa é uma versão estática do app, ou seja, sem acesso ao servidor
 
 ___
