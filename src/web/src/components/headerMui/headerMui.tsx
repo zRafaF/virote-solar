@@ -28,7 +28,7 @@ import MapIcon from "@mui/icons-material/Map";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import SettingsIcon from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Info";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ConnectionMenu from "./connectionMenu/connectionMenu";
 import MobileDrawer from "./mobileDrawer/mobileDrawer";
 
@@ -43,18 +43,41 @@ const darkTheme = createTheme({
     },
 });
 
+function getPageIndexFromPathname(pathname: string): number {
+    switch (pathname) {
+        case "/":
+            return 0;
+        case "/status":
+            return 2;
+        case "/config":
+            return 4;
+        case "/sobre":
+            return 6;
+
+        default:
+            return 0;
+    }
+}
+
 interface HeaderMuiProps {}
 
 const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const location = useLocation();
 
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
 
-    const [value, setValue] = useState(0);
+    const [currentPageValue, setCurrentPageValue] = useState(
+        getPageIndexFromPathname(location.pathname)
+    );
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
+    const handlePageChange = (
+        event: React.SyntheticEvent,
+        newValue: number
+    ) => {
+        setCurrentPageValue(newValue);
+        console.log(newValue);
     };
 
     return (
@@ -139,8 +162,8 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                             }}
                         >
                             <Tabs
-                                value={value}
-                                onChange={handleChange}
+                                value={currentPageValue}
+                                onChange={handlePageChange}
                                 aria-label="nav tabs example"
                                 indicatorColor="secondary"
                                 textColor="secondary"
@@ -237,7 +260,12 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                 </Container>
             </AppBar>
 
-            <MobileDrawer open={mobileOpen} setOpen={setMobileOpen} />
+            <MobileDrawer
+                open={mobileOpen}
+                setOpen={setMobileOpen}
+                currentPageValue={currentPageValue}
+                handlePageChange={handlePageChange}
+            />
         </ThemeProvider>
     );
 };

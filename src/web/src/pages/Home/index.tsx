@@ -24,6 +24,7 @@ const Home: FunctionComponent<HomeProps> = () => {
                 height: "stretch",
                 width: "stretch",
                 backgroundColor: "#f2f2f2",
+                overflow: "hidden",
             }}
         >
             <Box

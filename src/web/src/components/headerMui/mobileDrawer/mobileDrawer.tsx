@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import { Box, Divider, Drawer, Tab, Tabs, Tooltip } from "@mui/material";
-import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
+import { Dispatch, FunctionComponent, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import MapIcon from "@mui/icons-material/Map";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
@@ -14,20 +14,20 @@ import InfoIcon from "@mui/icons-material/Info";
 interface MobileDrawerProps {
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
+
+    currentPageValue: number;
+    handlePageChange: (event: React.SyntheticEvent, newValue: number) => void;
+
     drawerWidth?: number;
 }
 
 const MobileDrawer: FunctionComponent<MobileDrawerProps> = ({
     open,
     setOpen,
+    currentPageValue,
+    handlePageChange,
     drawerWidth = 240,
 }) => {
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
     return (
         <Box
             component="nav"
@@ -57,8 +57,8 @@ const MobileDrawer: FunctionComponent<MobileDrawerProps> = ({
             >
                 <Tabs
                     orientation="vertical"
-                    value={value}
-                    onChange={handleChange}
+                    value={currentPageValue}
+                    onChange={handlePageChange}
                     aria-label="nav tabs example"
                     indicatorColor="secondary"
                     textColor="secondary"
