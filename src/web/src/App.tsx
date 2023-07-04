@@ -10,10 +10,10 @@ import GlobalAccessContext, {
 } from "./contexts/globalAccessContext";
 import Home from "./pages/Home";
 import HeaderMui from "./components/headerMui/headerMui";
-import { ThemeSelectorProvider } from "contexts/ThemeSelectorContext";
 import Status from "pages/Status";
 import Config from "pages/Config";
 import Sobre from "pages/Sobre";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 export const eel = window.eel;
 try {
@@ -31,11 +31,17 @@ async function callEelFunc() {
 
 callEelFunc();
 
+const defaultTheme = createTheme({
+    palette: {
+        mode: "dark",
+    },
+});
+
 function App() {
     const [globalAccess, setGlobalAccess] = useState(globalAccessDefault);
 
     return (
-        <ThemeSelectorProvider>
+        <ThemeProvider theme={defaultTheme}>
             <GlobalAccessContext.Provider
                 value={[globalAccess, setGlobalAccess]}
             >
@@ -52,7 +58,7 @@ function App() {
                 </div>
                 <ToastContainer className="toast_notify" transition={Zoom} />
             </GlobalAccessContext.Provider>
-        </ThemeSelectorProvider>
+        </ThemeProvider>
     );
 }
 

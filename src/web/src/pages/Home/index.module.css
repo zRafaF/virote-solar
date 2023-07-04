@@ -7,10 +7,6 @@
 
 @import url("../../variables.css");
 
-.side_menu {
-    width: 17%;
-}
-
 .content {
     background-color: rebeccapurple;
     width: 83%;

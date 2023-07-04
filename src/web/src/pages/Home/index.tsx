@@ -25,9 +25,7 @@ const Home: FunctionComponent<HomeProps> = () => {
             <div className={styleModule.content}>
                 <MapComponent></MapComponent>
             </div>
-            <div className={styleModule.side_menu}>
-                <SideMenu />
-            </div>
+            <SideMenu />
         </Box>
     );
 };

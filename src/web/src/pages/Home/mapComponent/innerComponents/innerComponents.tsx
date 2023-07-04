@@ -3,11 +3,11 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import React, { useState, FC } from "react";
-import styleModule from "./innerComponents.module.css";
 
 import { TileLayer, useMap, Marker, useMapEvents } from "react-leaflet";
-import { MdOutlineLayers, MdMyLocation } from "react-icons/md";
-import CustomButton from "components/customButton/customButton";
+import { Fab, Stack, Tooltip } from "@mui/material";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import LayersIcon from "@mui/icons-material/Layers";
 
 type mapType = "satellite" | "street";
 
@@ -15,12 +15,14 @@ interface InnerComponentsProps {}
 
 const InnerComponents: FC<InnerComponentsProps> = () => {
     const map = useMap();
-    // eslint-disable-next-line no-unused-vars
+
+    /* eslint-disable */
     const mapEvents = useMapEvents({
         locationfound(e) {
             map.flyTo(e.latlng, 16);
         },
     });
+    /* eslint-enable */
 
     const [currentMapType, setCurrentMapType] = useState<mapType>("satellite");
     const getTileLayer = (): JSX.Element => {
@@ -66,27 +68,36 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
 
     return (
         <React.Fragment>
-            {getTileLayer()}{" "}
-            <CustomButton
-                toolTip="Trocar mapa"
-                key={"layerToggle"}
-                buttonKey={"layerToggle"}
-                preIcon={<MdOutlineLayers />}
-                iconSize={"var(--font_s)"}
-                className={styleModule.layer_toggle}
-                clickCallBack={toggleMap}
-                color={"black"}
-            ></CustomButton>
-            <CustomButton
-                toolTip="Ir para meu local"
-                key={"myLocation"}
-                buttonKey={"myLocation"}
-                preIcon={<MdMyLocation />}
-                iconSize={"var(--font_s)"}
-                className={styleModule.my_position}
-                clickCallBack={goToMyLocation}
-                color={"black"}
-            ></CustomButton>
+            {getTileLayer()}
+            <Stack
+                spacing={1}
+                sx={{
+                    zIndex: 999,
+                    position: "absolute",
+                    right: "12px",
+                    top: "82px",
+                }}
+            >
+                <Tooltip title="Mudar o mapa">
+                    <Fab
+                        aria-label="change-map-layers"
+                        onClick={toggleMap}
+                        size="medium"
+                    >
+                        <LayersIcon />
+                    </Fab>
+                </Tooltip>
+                <Tooltip title="Ir para minha localização">
+                    <Fab
+                        aria-label="go-to-my-location"
+                        onClick={goToMyLocation}
+                        size="medium"
+                    >
+                        <MyLocationIcon />
+                    </Fab>
+                </Tooltip>
+            </Stack>
+
             <Marker position={map.getCenter()}></Marker>
         </React.Fragment>
     );

@@ -16,7 +16,6 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    Paper,
     ThemeProvider,
     Toolbar,
     Tooltip,
@@ -32,6 +31,7 @@ import MapIcon from "@mui/icons-material/Map";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import SettingsIcon from "@mui/icons-material/Settings";
 import InfoIcon from "@mui/icons-material/Info";
+import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -51,23 +51,8 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
 
     const drawer = (
         <div>
-            <Toolbar
-                component={Paper}
-                elevation={4}
-                sx={{
-                    display: {
-                        xs: "none",
-                        sm: "flex",
-                    },
-                }}
-            >
-                <Typography variant="h6">Uno Pow Zero</Typography>
-            </Toolbar>
-
             <Toolbar />
-
             <Divider />
-
             <List>
                 <ListItem disablePadding>
                     <ListItem button component={Link} to={"/"}>
@@ -121,15 +106,15 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                 }}
                             />
                             <Typography
-                                variant="h6"
+                                variant="h5"
                                 noWrap
                                 component={Link}
                                 to={"/"}
                                 sx={{
                                     mr: 2,
                                     display: { xs: "none", md: "flex" },
-                                    fontFamily: "monospace",
-                                    fontWeight: 700,
+                                    fontFamily: "righteous",
+                                    fontWeight: 500,
                                     color: "inherit",
                                     textDecoration: "none",
                                 }}
@@ -168,8 +153,8 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                     mr: 2,
                                     display: { xs: "flex", md: "none" },
                                     flexGrow: 1,
-                                    fontFamily: "monospace",
-                                    fontWeight: 700,
+                                    fontFamily: "righteous",
+                                    fontWeight: 500,
                                     color: "inherit",
                                     textDecoration: "none",
                                 }}
@@ -181,7 +166,11 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                     flexGrow: 1,
                                     display: { xs: "none", md: "flex" },
                                     color: "white",
-                                    ml: 6,
+                                    ml: { md: 0, lg: 6 },
+                                    justifyContent: {
+                                        md: "center",
+                                        lg: "left",
+                                    },
                                 }}
                             >
                                 <ButtonGroup
@@ -189,43 +178,57 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                                     aria-label="button group"
                                     color="primary"
                                 >
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<MapIcon />}
-                                        component={Link}
-                                        to={"/"}
-                                    >
-                                        Mapa
-                                    </Button>
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<AnalyticsIcon />}
-                                        component={Link}
-                                        to={"status"}
-                                    >
-                                        Status
-                                    </Button>
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<SettingsIcon />}
-                                        component={Link}
-                                        to={"config"}
-                                    >
-                                        Config.
-                                    </Button>
-                                    <Button
-                                        sx={{ color: "white" }}
-                                        startIcon={<InfoIcon />}
-                                        component={Link}
-                                        to={"sobre"}
-                                    >
-                                        Sobre
-                                    </Button>
+                                    <Tooltip title="Página de criação de missão">
+                                        <Button
+                                            sx={{ color: "white" }}
+                                            startIcon={<MapIcon />}
+                                            component={Link}
+                                            to={"/"}
+                                        >
+                                            Mapa
+                                        </Button>
+                                    </Tooltip>
+                                    <Tooltip title="Página de status">
+                                        <Button
+                                            sx={{ color: "white" }}
+                                            startIcon={<AnalyticsIcon />}
+                                            component={Link}
+                                            to={"status"}
+                                        >
+                                            Status
+                                        </Button>
+                                    </Tooltip>
+                                    <Tooltip title="Página de configurações">
+                                        <Button
+                                            sx={{ color: "white" }}
+                                            startIcon={<SettingsIcon />}
+                                            component={Link}
+                                            to={"config"}
+                                        >
+                                            Config.
+                                        </Button>
+                                    </Tooltip>
+                                    <Tooltip title="Página de informações sobre a aplicação">
+                                        <Button
+                                            sx={{ color: "white" }}
+                                            startIcon={<InfoIcon />}
+                                            component={Link}
+                                            to={"sobre"}
+                                        >
+                                            Sobre
+                                        </Button>
+                                    </Tooltip>
                                 </ButtonGroup>
                             </Box>
                             <Box sx={{ flexGrow: 0 }}>
-                                <Tooltip title="Open settings">
-                                    <IconButton sx={{ p: 0 }}>asd</IconButton>
+                                <Tooltip title="Abrir configurações de conexão">
+                                    <Button
+                                        variant="contained"
+                                        color="error"
+                                        endIcon={<ElectricalServicesIcon />}
+                                    >
+                                        Conexão
+                                    </Button>
                                 </Tooltip>
                             </Box>
                         </Toolbar>
@@ -245,7 +248,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: "block", sm: "none" },
+                        display: { sm: "block", md: "none" },
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
                             width: drawerWidth,
