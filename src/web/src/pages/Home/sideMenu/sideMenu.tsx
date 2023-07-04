@@ -3,24 +3,24 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import SideBarWave from "./sideBarWave/sideBarWave";
 import { Box } from "@mui/material";
 
-const drawerWidth = 240;
+interface SideMenuProps {
+    drawerWidth: number;
+    children?: ReactNode;
+}
 
-interface SideMenuProps {}
-
-const SideMenu: FC<SideMenuProps> = () => {
+const SideMenu: FC<SideMenuProps> = ({ drawerWidth, children }) => {
     return (
         <Box
             sx={{
-                backgroundColor: "@f2f2f2",
-                height: "stretch",
+                height: "100%",
                 width: drawerWidth,
             }}
         >
-            SIDE BAR
+            {children}
             <Box
                 sx={{
                     position: "absolute",

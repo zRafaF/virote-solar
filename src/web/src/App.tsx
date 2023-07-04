@@ -33,7 +33,7 @@ callEelFunc();
 
 const defaultTheme = createTheme({
     palette: {
-        mode: "dark",
+        mode: "light",
     },
 });
 
