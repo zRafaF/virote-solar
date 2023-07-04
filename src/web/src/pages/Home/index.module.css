@@ -5,15 +5,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-@import url("../../../variables.css");
-
-.main_page_div {
-    position: absolute;
-    display: flex;
-    height: stretch;
-    width: stretch;
-    flex-direction: row-reverse;
-}
+@import url("../../variables.css");
 
 .side_menu {
     width: 17%;

@@ -16,16 +16,22 @@ interface MapComponentProps {}
 const MapComponent: FC<MapComponentProps> = () => {
     return (
         <div className={styleModule.map_div}>
-            <MapContainer
-                center={[51.505, -0.09]}
-                zoom={3}
-                style={{ zIndex: 30 }}
-            >
+            <MapContainer center={[51.505, -0.09]} zoom={3}>
                 <InnerComponents />
             </MapContainer>
             <svg className={styleModule.target_svg}>
-                <line x1="0" y1="50%" x2="100%" y2="50%" />
-                <line x1="50%" y1="0" x2="50%" y2="100%" />
+                <line
+                    x1="calc(50% - 20px)"
+                    y1="50%"
+                    x2="calc(50% + 20px)"
+                    y2="50%"
+                />
+                <line
+                    x1="50%"
+                    y1="calc(50% - 20px)"
+                    x2="50%"
+                    y2="calc(50% + 20px)"
+                />
             </svg>
         </div>
     );

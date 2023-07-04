@@ -4,15 +4,31 @@
 // https://opensource.org/licenses/MIT
 
 import { FunctionComponent } from "react";
-import MainPage from "./mainPage/mainPage";
+import styleModule from "./index.module.css";
+import MapComponent from "./mapComponent/mapComponent";
+import SideMenu from "./sideMenu/sideMenu";
+import { Box } from "@mui/material";
 
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
     return (
-        <>
-            <MainPage />
-        </>
+        <Box
+            sx={{
+                position: "absolute",
+                display: "flex",
+                flexDirection: "row-reverse",
+                height: "stretch",
+                width: "stretch",
+            }}
+        >
+            <div className={styleModule.content}>
+                <MapComponent></MapComponent>
+            </div>
+            <div className={styleModule.side_menu}>
+                <SideMenu />
+            </div>
+        </Box>
     );
 };
 

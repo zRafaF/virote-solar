@@ -5,12 +5,15 @@ import { ToastContainer, toast, Zoom } from "react-toastify";
 import { Routes, Route, HashRouter } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
-import Header from "./components/header/header";
 import GlobalAccessContext, {
     globalAccessDefault,
 } from "./contexts/globalAccessContext";
 import Home from "./pages/Home";
 import HeaderMui from "./components/headerMui/headerMui";
+import { ThemeSelectorProvider } from "contexts/ThemeSelectorContext";
+import Status from "pages/Status";
+import Config from "pages/Config";
+import Sobre from "pages/Sobre";
 
 export const eel = window.eel;
 try {
@@ -32,17 +35,24 @@ function App() {
     const [globalAccess, setGlobalAccess] = useState(globalAccessDefault);
 
     return (
-        <GlobalAccessContext.Provider value={[globalAccess, setGlobalAccess]}>
-            <div className="App">
-                <HashRouter>
-                    <HeaderMui></HeaderMui>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                    </Routes>
-                </HashRouter>
-            </div>
-            <ToastContainer className="toast_notify" transition={Zoom} />
-        </GlobalAccessContext.Provider>
+        <ThemeSelectorProvider>
+            <GlobalAccessContext.Provider
+                value={[globalAccess, setGlobalAccess]}
+            >
+                <div className="App">
+                    <HashRouter>
+                        <HeaderMui></HeaderMui>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="status" element={<Status />} />
+                            <Route path="config" element={<Config />} />
+                            <Route path="sobre" element={<Sobre />} />
+                        </Routes>
+                    </HashRouter>
+                </div>
+                <ToastContainer className="toast_notify" transition={Zoom} />
+            </GlobalAccessContext.Provider>
+        </ThemeSelectorProvider>
     );
 }
 
