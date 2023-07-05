@@ -96,8 +96,6 @@ const ConnectionMenu: FunctionComponent<connectionMenuProps> = () => {
     const getComOptions = (): string[] => {
         let resultArray: string[] = [];
 
-        console.log(globalAccess.ports);
-
         globalAccess.ports.forEach((element: PortType) => {
             resultArray.push(element.port + " | " + element.desc);
             console.log(element);

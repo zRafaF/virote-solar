@@ -77,7 +77,6 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
         newValue: number
     ) => {
         setCurrentPageValue(newValue);
-        console.log(newValue);
     };
 
     return (

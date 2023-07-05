@@ -4,11 +4,11 @@
 // https://opensource.org/licenses/MIT
 
 import { FunctionComponent } from "react";
-import MapComponent from "./mapComponent/mapComponent";
 import SideMenu from "./sideMenu/sideMenu";
 import { Box } from "@mui/material";
 import MenuContent from "./menuContent/menuContent";
 import BottomMenu from "./bottomMenu/bottomMenu";
+import MapComponent from "components/mapComponent/mapComponent";
 
 const drawerWidth = 280;
 
@@ -33,7 +33,7 @@ const Home: FunctionComponent<HomeProps> = () => {
                     width: "stretch",
                 }}
             >
-                <MapComponent></MapComponent>
+                <MapComponent />
             </Box>
             <Box
                 sx={{
@@ -45,7 +45,11 @@ const Home: FunctionComponent<HomeProps> = () => {
                     <MenuContent />
                 </SideMenu>
             </Box>
-            <Box>
+            <Box
+                sx={{
+                    display: { xs: "block", sm: "block", md: "none" },
+                }}
+            >
                 <BottomMenu>
                     <MenuContent />
                 </BottomMenu>

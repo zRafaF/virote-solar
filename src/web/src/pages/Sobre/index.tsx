@@ -113,6 +113,7 @@ const Sobre: FunctionComponent<SobreProps> = () => (
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center"
+                    spacing={2}
                 >
                     <Stack direction="row" spacing={2}>
                         <Tooltip title="Repositório no GitHub" arrow>
