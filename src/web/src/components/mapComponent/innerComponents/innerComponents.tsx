@@ -2,7 +2,14 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import React, { useState, FC, useContext } from "react";
+import React, {
+    useState,
+    FC,
+    useContext,
+    useMemo,
+    useRef,
+    useEffect,
+} from "react";
 
 import { TileLayer, useMap, Marker, useMapEvents } from "react-leaflet";
 import {
@@ -39,11 +46,17 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
 
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
+    const markerRef = useRef(null);
 
     const [globalAccessContext, setGlobalAccessContext] =
         useContext(GlobalAccessContext);
 
     const [currentMapType, setCurrentMapType] = useState<mapType>("satellite");
+
+    useEffect(() => {
+        console.log(map.getSize().x / 2);
+        console.log(map.getSize().y / 2);
+    }, [map]);
     const getTileLayer = (): JSX.Element => {
         switch (currentMapType) {
             case "satellite": {
@@ -113,9 +126,28 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
         });
     };
 
+    const eventHandlers = useMemo(
+        () => ({
+            dragend() {
+                const marker = markerRef.current;
+                if (marker != null) {
+                }
+            },
+            click: (e: any) => {
+                console.log("marker" + e.containerPoint); // markerPoint
+                console.log(e); // Center
+            },
+        }),
+        []
+    );
+
     const getMarkers = () => {
         return globalAccessContext.waypoints?.map((element) => (
-            <Marker position={element} />
+            <Marker
+                position={element}
+                eventHandlers={eventHandlers}
+                ref={markerRef}
+            />
         ));
     };
 

@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import { Button, Container, Divider, Stack } from "@mui/material";
+import { Button, Container, Divider, Stack, Tooltip } from "@mui/material";
 import React, { FunctionComponent } from "react";
 import SaveIcon from "@mui/icons-material/Save";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
@@ -63,39 +63,48 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
             <Stack spacing={2}>
                 <Divider />
                 <Stack direction="row" spacing={2} justifyContent={"center"}>
-                    <Button
-                        variant="outlined"
-                        endIcon={<SaveIcon />}
-                        fullWidth
-                        onClick={saveMissionData}
+                    <Tooltip
+                        title="Exportar missão para o seu dispositivo"
+                        arrow
                     >
-                        Salvar
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        endIcon={<UploadFileIcon />}
-                        component="label"
-                        fullWidth
-                    >
-                        Carregar
-                        <input
-                            type="file"
-                            accept=".json"
-                            hidden
-                            onChange={handleChange}
-                        />
-                    </Button>
+                        <Button
+                            variant="outlined"
+                            endIcon={<SaveIcon />}
+                            fullWidth
+                            onClick={saveMissionData}
+                        >
+                            Salvar
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="Importar missão do seu dispositivo" arrow>
+                        <Button
+                            variant="outlined"
+                            endIcon={<UploadFileIcon />}
+                            component="label"
+                            fullWidth
+                        >
+                            Carregar
+                            <input
+                                type="file"
+                                accept=".json"
+                                hidden
+                                onChange={handleChange}
+                            />
+                        </Button>
+                    </Tooltip>
                 </Stack>
                 <Divider />
                 <Stack direction="row" spacing={2} justifyContent={"center"}>
-                    <Button
-                        variant="contained"
-                        color="success"
-                        size="large"
-                        endIcon={<UploadIcon />}
-                    >
-                        Upload
-                    </Button>
+                    <Tooltip title="Fazer upload da missão para a RPA" arrow>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            size="large"
+                            endIcon={<UploadIcon />}
+                        >
+                            Upload
+                        </Button>
+                    </Tooltip>
                 </Stack>
                 <Divider />
             </Stack>

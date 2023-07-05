@@ -5,7 +5,7 @@
 
 //import ImagePlaceHolder from "./mapPlaceHolder.png";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import styleModule from "./mapComponent.module.css";
 
 import { MapContainer } from "react-leaflet";
