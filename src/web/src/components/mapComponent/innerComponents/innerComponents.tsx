@@ -21,6 +21,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { LatLngExpression } from "leaflet";
 type mapType = "satellite" | "street";
 
 interface InnerComponentsProps {}
@@ -38,6 +39,8 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
 
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
+
+    const [markers, setMarkers] = useState<LatLngExpression[]>([]);
 
     const [currentMapType, setCurrentMapType] = useState<mapType>("satellite");
     const getTileLayer = (): JSX.Element => {
@@ -98,6 +101,14 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
         };
     };
 
+    const addWaypoint = () => {
+        setMarkers((oldArray) => [...oldArray, map.getCenter()]);
+    };
+
+    const getMarkers = () => {
+        return markers?.map((element) => <Marker position={element} />);
+    };
+
     return (
         <React.Fragment>
             {getTileLayer()}
@@ -143,13 +154,16 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 <Tooltip title="Adicionar waypoint" arrow>
                     <Fab
                         aria-label="add-waypoint"
-                        onClick={toggleMap}
+                        onClick={addWaypoint}
                         size="medium"
-                        color="primary"
+                        color="success"
                     >
                         <AddLocationIcon />
                     </Fab>
                 </Tooltip>
+                <Divider />
+                <Divider />
+                <Divider />
                 <Tooltip title="Setar casa" arrow>
                     <Fab
                         aria-label="set-home"
@@ -185,8 +199,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                     </Fab>
                 </Tooltip>
             </Stack>
-
-            <Marker position={map.getCenter()}></Marker>
+            {getMarkers()}
         </React.Fragment>
     );
 };
