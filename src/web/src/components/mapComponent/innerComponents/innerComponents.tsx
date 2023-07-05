@@ -2,7 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import React, { useState, FC } from "react";
+import React, { useState, FC, useContext } from "react";
 
 import { TileLayer, useMap, Marker, useMapEvents } from "react-leaflet";
 import {
@@ -21,7 +21,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { LatLngExpression } from "leaflet";
+import GlobalAccessContext from "contexts/globalAccessContext";
 type mapType = "satellite" | "street";
 
 interface InnerComponentsProps {}
@@ -40,7 +40,8 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
 
-    const [markers, setMarkers] = useState<LatLngExpression[]>([]);
+    const [globalAccessContext, setGlobalAccessContext] =
+        useContext(GlobalAccessContext);
 
     const [currentMapType, setCurrentMapType] = useState<mapType>("satellite");
     const getTileLayer = (): JSX.Element => {
@@ -102,11 +103,20 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
     };
 
     const addWaypoint = () => {
-        setMarkers((oldArray) => [...oldArray, map.getCenter()]);
+        setGlobalAccessContext((prevGlobalAccess) => {
+            const newWaypointsArr = [...prevGlobalAccess.waypoints];
+            newWaypointsArr.push(map.getCenter());
+            return {
+                ports: prevGlobalAccess.ports,
+                waypoints: newWaypointsArr,
+            };
+        });
     };
 
     const getMarkers = () => {
-        return markers?.map((element) => <Marker position={element} />);
+        return globalAccessContext.waypoints?.map((element) => (
+            <Marker position={element} />
+        ));
     };
 
     return (

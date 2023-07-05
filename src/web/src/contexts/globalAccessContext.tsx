@@ -2,13 +2,46 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import { createContext } from "react";
+import { LatLngExpression } from "leaflet";
+import {
+    Dispatch,
+    FunctionComponent,
+    SetStateAction,
+    createContext,
+    useState,
+} from "react";
 
-export const globalAccessDefault: globalAccessInterface = {
-    //updatePortList: alertMyself(),
+interface GlobalAccessContextProps {
+    ports: PortType[];
+    waypoints: LatLngExpression[];
+}
+
+const globalAccessDefault: GlobalAccessContextProps = {
     ports: [],
+    waypoints: [],
 };
 
-const GlobalAccessContext = createContext<any>([globalAccessDefault, () => {}]);
+const GlobalAccessContext = createContext<
+    [
+        GlobalAccessContextProps,
+        Dispatch<SetStateAction<GlobalAccessContextProps>>
+    ]
+>([globalAccessDefault, () => {}]);
 
 export default GlobalAccessContext;
+
+interface GlobalAccessProviderProps {
+    children: any;
+}
+
+export const GlobalAccessProvider: FunctionComponent<
+    GlobalAccessProviderProps
+> = ({ children }) => {
+    const [docsContext, setDocsContext] = useState(globalAccessDefault);
+
+    return (
+        <GlobalAccessContext.Provider value={[docsContext, setDocsContext]}>
+            {children}
+        </GlobalAccessContext.Provider>
+    );
+};

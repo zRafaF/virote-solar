@@ -1,13 +1,9 @@
-import React, { useState } from "react";
-
 import "./App.css";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Routes, Route, HashRouter } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
-import GlobalAccessContext, {
-    globalAccessDefault,
-} from "./contexts/globalAccessContext";
+import { GlobalAccessProvider } from "./contexts/globalAccessContext";
 import Home from "./pages/Home";
 import HeaderMui from "./components/headerMui/headerMui";
 import Status from "pages/Status";
@@ -27,13 +23,9 @@ const defaultTheme = createTheme({
 });
 
 function App() {
-    const [globalAccess, setGlobalAccess] = useState(globalAccessDefault);
-
     return (
         <ThemeProvider theme={defaultTheme}>
-            <GlobalAccessContext.Provider
-                value={[globalAccess, setGlobalAccess]}
-            >
+            <GlobalAccessProvider>
                 <div className="App">
                     <HashRouter>
                         <HeaderMui></HeaderMui>
@@ -46,7 +38,7 @@ function App() {
                     </HashRouter>
                 </div>
                 <ToastContainer className="toast_notify" transition={Zoom} />
-            </GlobalAccessContext.Provider>
+            </GlobalAccessProvider>
         </ThemeProvider>
     );
 }
