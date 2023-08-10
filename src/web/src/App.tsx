@@ -11,6 +11,7 @@ import Config from "pages/Config";
 import Sobre from "pages/Sobre";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { callEelFunc } from "helper/api";
+import { MissionDataProvider } from "contexts/missionDataContext";
 
 require("./helper/api");
 
@@ -26,18 +27,23 @@ function App() {
     return (
         <ThemeProvider theme={defaultTheme}>
             <GlobalAccessProvider>
-                <div className="App">
-                    <HashRouter>
-                        <HeaderMui></HeaderMui>
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="status" element={<Status />} />
-                            <Route path="config" element={<Config />} />
-                            <Route path="sobre" element={<Sobre />} />
-                        </Routes>
-                    </HashRouter>
-                </div>
-                <ToastContainer className="toast_notify" transition={Zoom} />
+                <MissionDataProvider>
+                    <div className="App">
+                        <HashRouter>
+                            <HeaderMui></HeaderMui>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="status" element={<Status />} />
+                                <Route path="config" element={<Config />} />
+                                <Route path="sobre" element={<Sobre />} />
+                            </Routes>
+                        </HashRouter>
+                    </div>
+                    <ToastContainer
+                        className="toast_notify"
+                        transition={Zoom}
+                    />
+                </MissionDataProvider>
             </GlobalAccessProvider>
         </ThemeProvider>
     );

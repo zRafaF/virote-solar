@@ -82,7 +82,7 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <AppBar position="static">
-                <Container maxWidth="xl">
+                <Container maxWidth={false}>
                     <Toolbar disableGutters>
                         <ExploreIcon
                             sx={{

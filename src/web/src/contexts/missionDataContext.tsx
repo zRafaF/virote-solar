@@ -7,7 +7,6 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import { LatLngExpression } from "leaflet";
 import {
     Dispatch,
     FunctionComponent,
@@ -15,36 +14,34 @@ import {
     createContext,
     useState,
 } from "react";
+import { CustomWaypointType } from "types/CustomWaypoint";
 
-interface GlobalAccessContextProps {
-    waypoints: LatLngExpression[];
+interface MissionDataContextProps {
+    waypoints: CustomWaypointType[];
 }
 
-const globalAccessDefault: GlobalAccessContextProps = {
+const MissionDataDefault: MissionDataContextProps = {
     waypoints: [],
 };
 
-const GlobalAccessContext = createContext<
-    [
-        GlobalAccessContextProps,
-        Dispatch<SetStateAction<GlobalAccessContextProps>>
-    ]
->([globalAccessDefault, () => {}]);
+const MissionDataContext = createContext<
+    [MissionDataContextProps, Dispatch<SetStateAction<MissionDataContextProps>>]
+>([MissionDataDefault, () => {}]);
 
-export default GlobalAccessContext;
+export default MissionDataContext;
 
 interface GlobalAccessProviderProps {
     children: any;
 }
 
-export const GlobalAccessProvider: FunctionComponent<
+export const MissionDataProvider: FunctionComponent<
     GlobalAccessProviderProps
 > = ({ children }) => {
-    const [docsContext, setDocsContext] = useState(globalAccessDefault);
+    const [missionData, setMissionData] = useState(MissionDataDefault);
 
     return (
-        <GlobalAccessContext.Provider value={[docsContext, setDocsContext]}>
+        <MissionDataContext.Provider value={[missionData, setMissionData]}>
             {children}
-        </GlobalAccessContext.Provider>
+        </MissionDataContext.Provider>
     );
 };

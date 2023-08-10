@@ -9,9 +9,10 @@ import React, {
     useMemo,
     useRef,
     useEffect,
+    useCallback,
 } from "react";
 
-import { TileLayer, useMap, Marker, useMapEvents } from "react-leaflet";
+import { TileLayer, useMap, useMapEvents } from "react-leaflet";
 import {
     Divider,
     Fab,
@@ -28,28 +29,74 @@ import HomeIcon from "@mui/icons-material/Home";
 import AddLocationIcon from "@mui/icons-material/AddLocation";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import DeleteIcon from "@mui/icons-material/Delete";
-import GlobalAccessContext from "contexts/globalAccessContext";
+import WaypointComponent from "./waypointComponent";
+import MissionDataContext from "contexts/missionDataContext";
+import { CustomWaypointType } from "types/CustomWaypoint";
 type mapType = "satellite" | "street";
 
 interface InnerComponentsProps {}
 
 const InnerComponents: FC<InnerComponentsProps> = () => {
     const map = useMap();
+    const [missionData, setMissionData] = useContext(MissionDataContext);
+
+    const [onTimer, setOnTimer] = useState<boolean>(false);
+
+    const handleMapMove = async () => {
+        if (onTimer) {
+            return;
+        }
+        setOnTimer(true);
+    };
+
+    const updateClosestWaypoint = useCallback(() => {
+        if (map) {
+            const center = map.getCenter();
+
+            // Find the closest waypoint to the center of the map
+            let closestWaypoint: CustomWaypointType | null = null;
+            let closestDistance = Number.MAX_VALUE;
+
+            missionData.waypoints.forEach((waypoint) => {
+                const distance = center.distanceTo(waypoint.position);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestWaypoint = waypoint;
+                }
+            });
+
+            if (closestWaypoint) {
+                console.log(closestWaypoint);
+                //setSelectedWaypoint(closestWaypoint.id);
+            }
+        }
+    }, [map, missionData.waypoints]);
+
+    useEffect(() => {
+        if (!onTimer) return;
+        setTimeout(() => {
+            setOnTimer(false);
+            updateClosestWaypoint();
+        }, 200); // Debounce delay of 300 milliseconds (0.3 seconds)
+    }, [onTimer, updateClosestWaypoint]);
+
+    useEffect(() => {
+        updateClosestWaypoint();
+    }, [missionData, updateClosestWaypoint]);
 
     /* eslint-disable */
-    const mapEvents = useMapEvents({
+    useMapEvents({
         locationfound(e) {
             map.flyTo(e.latlng, 16);
         },
+        move() {
+            handleMapMove();
+        },
     });
     /* eslint-enable */
-
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
     const markerRef = useRef(null);
-
-    const [globalAccessContext, setGlobalAccessContext] =
-        useContext(GlobalAccessContext);
 
     const [currentMapType, setCurrentMapType] = useState<mapType>("satellite");
 
@@ -116,17 +163,34 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
     };
 
     const addWaypoint = () => {
-        setGlobalAccessContext((prevGlobalAccess) => {
-            const newWaypointsArr = [...prevGlobalAccess.waypoints];
-            newWaypointsArr.push(map.getCenter());
+        setMissionData((prevMissionData) => {
+            const currentNumOfWaypoints = prevMissionData.waypoints.length;
+
+            prevMissionData.waypoints.push({
+                id: currentNumOfWaypoints
+                    ? prevMissionData.waypoints[currentNumOfWaypoints - 1].id +
+                      1
+                    : 0,
+                position: map.getCenter(),
+            });
             return {
-                ports: prevGlobalAccess.ports,
-                waypoints: newWaypointsArr,
+                ...prevMissionData,
             };
         });
     };
 
-    const eventHandlers = useMemo(
+    const deleteWaypoint = () => {
+        console.log(map.getSize().x / 2);
+        console.log(map.getSize().y / 2);
+
+        missionData.waypoints.forEach((element) => {
+            console.log(element);
+        });
+
+        return;
+    };
+
+    useMemo(
         () => ({
             dragend() {
                 const marker = markerRef.current;
@@ -142,11 +206,14 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
     );
 
     const getMarkers = () => {
-        return globalAccessContext.waypoints?.map((element) => (
-            <Marker
-                position={element}
-                eventHandlers={eventHandlers}
-                ref={markerRef}
+        return missionData.waypoints?.map((element, idx) => (
+            <WaypointComponent
+                position={element.position}
+                key={"waypoint_" + idx}
+                onClick={() => {
+                    alert(1);
+                }}
+                selected={false}
             />
         ));
     };
@@ -233,7 +300,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 <Tooltip title="Deletar ponto" arrow>
                     <Fab
                         aria-label="delete"
-                        onClick={toggleMap}
+                        onClick={deleteWaypoint}
                         size="medium"
                         color="error"
                     >
