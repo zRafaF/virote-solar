@@ -2,15 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import React, {
-    useState,
-    FC,
-    useContext,
-    useMemo,
-    useRef,
-    useEffect,
-    useCallback,
-} from "react";
+import React, { useState, FC, useContext, useEffect } from "react";
 
 import { TileLayer, useMap, useMapEvents } from "react-leaflet";
 import {
@@ -31,7 +23,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import DeleteIcon from "@mui/icons-material/Delete";
 import WaypointComponent from "./waypointComponent";
 import MissionDataContext from "contexts/missionDataContext";
-import { CustomWaypointType } from "types/CustomWaypoint";
+import useClosestWaypoint from "hooks/useClosestWaypoint";
 type mapType = "satellite" | "street";
 
 interface InnerComponentsProps {}
@@ -40,70 +32,20 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
     const map = useMap();
     const [missionData, setMissionData] = useContext(MissionDataContext);
 
-    const [onTimer, setOnTimer] = useState<boolean>(false);
-
-    const handleMapMove = async () => {
-        if (onTimer) {
-            return;
-        }
-        setOnTimer(true);
-    };
-
-    const updateClosestWaypoint = useCallback(() => {
-        if (map) {
-            const center = map.getCenter();
-
-            // Find the closest waypoint to the center of the map
-            let closestWaypoint: CustomWaypointType | null = null;
-            let closestDistance = Number.MAX_VALUE;
-
-            missionData.waypoints.forEach((waypoint) => {
-                const distance = center.distanceTo(waypoint.position);
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestWaypoint = waypoint;
-                }
-            });
-
-            if (closestWaypoint) {
-                console.log(closestWaypoint);
-                //setSelectedWaypoint(closestWaypoint.id);
-            }
-        }
-    }, [map, missionData.waypoints]);
-
-    useEffect(() => {
-        if (!onTimer) return;
-        setTimeout(() => {
-            setOnTimer(false);
-            updateClosestWaypoint();
-        }, 200); // Debounce delay of 300 milliseconds (0.3 seconds)
-    }, [onTimer, updateClosestWaypoint]);
-
-    useEffect(() => {
-        updateClosestWaypoint();
-    }, [missionData, updateClosestWaypoint]);
-
-    /* eslint-disable */
     useMapEvents({
         locationfound(e) {
             map.flyTo(e.latlng, 16);
         },
-        move() {
-            handleMapMove();
-        },
     });
-    /* eslint-enable */
     const theme = useTheme();
     const lessThanMd = useMediaQuery(theme.breakpoints.down("md"));
-    const markerRef = useRef(null);
 
     const [currentMapType, setCurrentMapType] = useState<mapType>("satellite");
 
-    useEffect(() => {
-        console.log(map.getSize().x / 2);
-        console.log(map.getSize().y / 2);
-    }, [map]);
+    const [closestWaypoint, updateClosestWaypoint] = useClosestWaypoint(
+        missionData.waypoints
+    );
+
     const getTileLayer = (): JSX.Element => {
         switch (currentMapType) {
             case "satellite": {
@@ -142,7 +84,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
     };
 
     const goToMyLocation = () => {
-        console.log(map.locate());
+        map.locate();
     };
 
     const getToolsSx = (): SxProps<Theme> => {
@@ -167,10 +109,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
             const currentNumOfWaypoints = prevMissionData.waypoints.length;
 
             prevMissionData.waypoints.push({
-                id: currentNumOfWaypoints
-                    ? prevMissionData.waypoints[currentNumOfWaypoints - 1].id +
-                      1
-                    : 0,
+                id: currentNumOfWaypoints,
                 position: map.getCenter(),
             });
             return {
@@ -179,41 +118,38 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
         });
     };
 
+    useEffect(() => {
+        updateClosestWaypoint();
+    }, [missionData, updateClosestWaypoint]);
+
     const deleteWaypoint = () => {
-        console.log(map.getSize().x / 2);
-        console.log(map.getSize().y / 2);
+        if (closestWaypoint === undefined) return;
+        setMissionData((prevMissionData) => {
+            const waypointIdToDelete = closestWaypoint.id;
+            prevMissionData.waypoints.splice(waypointIdToDelete, 1);
+            for (
+                let i = waypointIdToDelete;
+                i < prevMissionData.waypoints.length;
+                i++
+            ) {
+                prevMissionData.waypoints[i].id = i;
+            }
 
-        missionData.waypoints.forEach((element) => {
-            console.log(element);
+            return {
+                ...prevMissionData,
+            };
         });
-
-        return;
     };
 
-    useMemo(
-        () => ({
-            dragend() {
-                const marker = markerRef.current;
-                if (marker != null) {
-                }
-            },
-            click: (e: any) => {
-                console.log("marker" + e.containerPoint); // markerPoint
-                console.log(e); // Center
-            },
-        }),
-        []
-    );
-
-    const getMarkers = () => {
-        return missionData.waypoints?.map((element, idx) => (
+    const makeMarkers = () => {
+        return missionData.waypoints?.map((element) => (
             <WaypointComponent
                 position={element.position}
-                key={"waypoint_" + idx}
+                key={"waypoint_" + element.id}
                 onClick={() => {
                     alert(1);
                 }}
-                selected={false}
+                selected={closestWaypoint?.id === element.id ? true : false}
             />
         ));
     };
@@ -308,7 +244,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                     </Fab>
                 </Tooltip>
             </Stack>
-            {getMarkers()}
+            {makeMarkers()}
         </React.Fragment>
     );
 };
