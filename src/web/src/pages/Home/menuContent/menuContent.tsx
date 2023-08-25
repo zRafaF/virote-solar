@@ -4,10 +4,13 @@
 // https://opensource.org/licenses/MIT
 
 import { Button, Container, Divider, Stack, Tooltip } from "@mui/material";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import SaveIcon from "@mui/icons-material/Save";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import UploadIcon from "@mui/icons-material/Upload";
+import MissionDataContext from "contexts/missionDataContext";
+import { uploadMission } from "helper/api";
+import { getMissionArray } from "helper/util";
 interface MenuContentProps {}
 
 function download(content: string, fileName: string, contentType: string) {
@@ -41,23 +44,18 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
             alert(parsedData);
         }
     };
+    const [missionData, setMissionData] = useContext(MissionDataContext);
 
     const saveMissionData = () => {
-        const myArray = [
-            [1373628934214, 3],
-            [1373628934218, 3],
-            [1373628934220, 1],
-            [1373628934230, 1],
-            [1373628934234, 0],
-            [1373628934237, -1],
-            [1373628934242, 0],
-            [1373628934246, -1],
-            [1373628934251, 0],
-            [1373628934266, 11],
-        ];
+        const myArray = getMissionArray(missionData.waypoints);
 
         download(JSON.stringify(myArray), "json.json", "text/plain");
     };
+
+    const handleUploadMission = () => {
+        uploadMission(missionData);
+    };
+
     return (
         <Container disableGutters sx={{ pl: { sm: 0, md: 2 } }}>
             <Stack spacing={2}>
@@ -101,6 +99,7 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
                             color="success"
                             size="large"
                             endIcon={<UploadIcon />}
+                            onClick={handleUploadMission}
                         >
                             Upload
                         </Button>

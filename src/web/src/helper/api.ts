@@ -2,6 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
+import { MissionDataType } from "contexts/missionDataContext";
 import { toast } from "react-toastify";
 
 export const eel = window.eel;
@@ -20,4 +21,8 @@ export async function callEelFunc() {
 
 export async function getAvailablePorts(): Promise<PortType[]> {
     return eel.get_available_ports_list()();
+}
+
+export async function uploadMission(mission: MissionDataType): Promise<number> {
+    return eel.upload_mission(mission)();
 }

@@ -111,6 +111,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
             prevMissionData.waypoints.push({
                 id: currentNumOfWaypoints,
                 position: map.getCenter(),
+                height: 50,
             });
             return {
                 ...prevMissionData,

@@ -16,16 +16,16 @@ import {
 } from "react";
 import { CustomWaypointType } from "types/CustomWaypoint";
 
-interface MissionDataContextProps {
+export interface MissionDataType {
     waypoints: CustomWaypointType[];
 }
 
-const MissionDataDefault: MissionDataContextProps = {
+const MissionDataDefault: MissionDataType = {
     waypoints: [],
 };
 
 const MissionDataContext = createContext<
-    [MissionDataContextProps, Dispatch<SetStateAction<MissionDataContextProps>>]
+    [MissionDataType, Dispatch<SetStateAction<MissionDataType>>]
 >([MissionDataDefault, () => {}]);
 
 export default MissionDataContext;

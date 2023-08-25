@@ -2,9 +2,12 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import { LatLngExpression } from "leaflet";
+import { LatLng } from "leaflet";
 
 export type CustomWaypointType = {
     id: number;
-    position: LatLngExpression;
+    position: LatLng;
+    height: number;
 };
+
+export type MissionPointType = [number, number, number];
