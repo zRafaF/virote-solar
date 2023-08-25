@@ -6,3 +6,4 @@ pyinstaller==5.7.0
 eel==0.15.1
 pyserial===3.5
 pymavlink===2.4.40
+dronekit===2.9.2

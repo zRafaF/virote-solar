@@ -8,6 +8,8 @@ import json
 import serial.tools.list_ports
 from pymavlink import mavutil
 from classes import *
+import uav
+
 
 
 @eel.expose
@@ -18,6 +20,11 @@ def get_available_ports_list():
         ports_dict.append({"port": port, "desc": desc})
     print(ports_dict)
     return ports_dict
+
+@eel.expose
+def connect_vehicle(connection_dict):
+    print(connection_dict)
+    pass
 
 
 @eel.expose
@@ -57,3 +64,11 @@ def upload_mission(mission_data_dict):
 
     # TODO Add functionality to this code
     pass
+
+"""
+
+def upload_to_uav(messages: list):
+    mav.waypoint_clear_all_send()
+    mav.waypoint_count_send(wp.count())
+
+"""

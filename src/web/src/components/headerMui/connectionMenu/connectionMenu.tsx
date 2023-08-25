@@ -20,7 +20,7 @@ import GlobalAccessContext from "contexts/globalAccessContext";
 import { toast } from "react-toastify";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import PowerIcon from "@mui/icons-material/Power";
-import { getAvailablePorts } from "helper/api";
+import { connectToUav, getAvailablePorts } from "helper/api";
 
 const baudRates = [
     "1200",
@@ -110,6 +110,7 @@ const ConnectionMenu: FunctionComponent<connectionMenuProps> = () => {
             port: data.get("port-select"),
             baud: data.get("baud-rate"),
         });
+        connectToUav(data.get("port-select"), data.get("baud-rate"));
     };
 
     useEffect(() => {
