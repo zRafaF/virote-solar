@@ -20,8 +20,8 @@ const WaypointsTable: FunctionComponent<WaypointsTableProps> = () => {
     const [missionData] = useContext(MissionDataContext);
 
     return (
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+        <TableContainer component={Paper} variant="outlined">
+            <Table aria-label="simple table" size="small">
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
