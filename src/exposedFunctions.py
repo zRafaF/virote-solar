@@ -8,8 +8,7 @@ import json
 import serial.tools.list_ports
 from pymavlink import mavutil
 from classes import *
-import uav
-
+from vehicle_api import the_vehicle
 
 
 @eel.expose
@@ -18,13 +17,17 @@ def get_available_ports_list():
     ports_dict = []
     for port, desc, _ in sorted(ports):
         ports_dict.append({"port": port, "desc": desc})
-    print(ports_dict)
     return ports_dict
+
 
 @eel.expose
 def connect_vehicle(connection_dict):
-    print(connection_dict)
-    pass
+    port = connection_dict.get("port", "")
+    baud = connection_dict.get("baud", "")
+
+    if port == "" or baud == "":
+        return 0
+    the_vehicle.connect_to_uav(port, baud)
 
 
 @eel.expose
@@ -59,16 +62,17 @@ def generate_mavlink_messages(mission_data: MissionDataType):
 
 @eel.expose
 def upload_mission(mission_data_dict):
+    """
+    Function exposed to the front end.
+
+    This function receives a dictionary with contents of type MissionDataType
+
+    You can find an example at
+    - https://gist.github.com/donghee/8d8377ba51aa11721dcaa7c811644169
+    - https://www.youtube.com/watch?v=pAAN055XCxA&ab_channel=AscendEngineering
+    """
     mission_data = MissionDataType.from_dict(mission_data_dict)
     messages = generate_mavlink_messages(mission_data)
 
-    # TODO Add functionality to this code
-    pass
-
-"""
-
-def upload_to_uav(messages: list):
-    mav.waypoint_clear_all_send()
-    mav.waypoint_count_send(wp.count())
-
-"""
+    for message in messages:
+        the_vehicle.send_message(message)

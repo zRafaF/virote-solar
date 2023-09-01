@@ -29,7 +29,7 @@ export async function uploadMission(mission: MissionDataType): Promise<number> {
 
 export async function connectToUav(port: any, baud: any) {
     console.log("port " + port + " baud " + baud);
-    return eel.upload_mission({
+    return eel.connect_vehicle({
         port: port,
         baud: baud,
     })();

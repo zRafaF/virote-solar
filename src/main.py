@@ -22,7 +22,7 @@ run_as_development = parser.parse_args().development
 
 @eel.expose
 def my_func():
-    print("AAAAAAAAAAAAAaa")
+    print("Front end is connected")
 
 
 def start_eel():
