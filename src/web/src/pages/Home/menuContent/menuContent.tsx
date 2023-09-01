@@ -11,6 +11,7 @@ import UploadIcon from "@mui/icons-material/Upload";
 import MissionDataContext from "contexts/missionDataContext";
 import { uploadMission } from "helper/api";
 import { getMissionArray } from "helper/util";
+import WaypointsTable from "./WaypointsTable/WaypointsTable";
 interface MenuContentProps {}
 
 function download(content: string, fileName: string, contentType: string) {
@@ -44,7 +45,7 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
             alert(parsedData);
         }
     };
-    const [missionData, setMissionData] = useContext(MissionDataContext);
+    const [missionData] = useContext(MissionDataContext);
 
     const saveMissionData = () => {
         const myArray = getMissionArray(missionData.waypoints);
@@ -91,6 +92,8 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
                         </Button>
                     </Tooltip>
                 </Stack>
+                <Divider />
+                <WaypointsTable />
                 <Divider />
                 <Stack direction="row" spacing={2} justifyContent={"center"}>
                     <Tooltip title="Fazer upload da missão para a RPA" arrow>

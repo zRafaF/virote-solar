@@ -10,7 +10,7 @@ import MenuContent from "./menuContent/menuContent";
 import BottomMenu from "./bottomMenu/bottomMenu";
 import MapComponent from "components/mapComponent/mapComponent";
 
-const drawerWidth = 280;
+const drawerWidth = 320;
 
 interface HomeProps {}
 
