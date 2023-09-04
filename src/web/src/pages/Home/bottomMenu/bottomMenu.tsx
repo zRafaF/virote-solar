@@ -58,7 +58,7 @@ const BottomMenu: FunctionComponent<BottomMenuProps> = ({ children }) => {
             <Global
                 styles={{
                     ".MuiDrawer-root > .MuiPaper-root": {
-                        height: `calc(50% - ${drawerBleeding}px)`,
+                        height: `calc(80% - ${drawerBleeding}px)`,
                         overflow: "visible",
                     },
                 }}

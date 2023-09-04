@@ -13,7 +13,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 interface WaypointsTableProps {}
 
 const WaypointsTable: FunctionComponent<WaypointsTableProps> = () => {
@@ -28,6 +29,7 @@ const WaypointsTable: FunctionComponent<WaypointsTableProps> = () => {
                         <TableCell align="right">Latitude</TableCell>
                         <TableCell align="right">Longitude</TableCell>
                         <TableCell align="right">Altura</TableCell>
+                        <TableCell align="right"></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -51,6 +53,15 @@ const WaypointsTable: FunctionComponent<WaypointsTableProps> = () => {
                             </TableCell>
                             <TableCell align="right">
                                 {row.height.toFixed(3)}
+                            </TableCell>
+                            <TableCell>
+                                <IconButton
+                                    aria-label="expand row"
+                                    size="small"
+                                    onClick={() => alert("delete")}
+                                >
+                                    <DeleteIcon />
+                                </IconButton>
                             </TableCell>
                         </TableRow>
                     ))}
