@@ -10,6 +10,8 @@ import styleModule from "./mapComponent.module.css";
 
 import { MapContainer } from "react-leaflet";
 import InnerComponents from "./innerComponents/innerComponents";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 interface MapComponentProps {}
 
@@ -20,18 +22,8 @@ const MapComponent: FC<MapComponentProps> = () => {
                 <InnerComponents />
             </MapContainer>
             <svg className={styleModule.target_svg}>
-                <line
-                    x1="calc(50% - 20px)"
-                    y1="50%"
-                    x2="calc(50% + 20px)"
-                    y2="50%"
-                />
-                <line
-                    x1="50%"
-                    y1="calc(50% - 20px)"
-                    x2="50%"
-                    y2="calc(50% + 20px)"
-                />
+                <line x1="0" y1="20px" x2="40px" y2="20px" />
+                <line x1="20px" y1="0px" x2="20px" y2="40px" />
             </svg>
         </div>
     );

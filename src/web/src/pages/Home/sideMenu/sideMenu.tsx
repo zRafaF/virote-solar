@@ -30,7 +30,7 @@ const SideMenu: FC<SideMenuProps> = ({ drawerWidth, children }) => {
                     left: drawerWidth,
                     width: "80px",
                     zIndex: 1,
-                    overflowY: "hidden",
+                    overflow: "hidden",
                 }}
             >
                 <SideBarWave />
