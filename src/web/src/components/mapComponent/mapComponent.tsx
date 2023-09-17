@@ -10,8 +10,6 @@ import styleModule from "./mapComponent.module.css";
 
 import { MapContainer } from "react-leaflet";
 import InnerComponents from "./innerComponents/innerComponents";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 
 interface MapComponentProps {}
 
