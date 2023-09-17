@@ -61,7 +61,6 @@ const MobileDrawer: FunctionComponent<MobileDrawerProps> = ({
                     onChange={handlePageChange}
                     aria-label="nav tabs example"
                     indicatorColor="secondary"
-                    textColor="secondary"
                     onClick={() => {
                         setOpen(false);
                     }}

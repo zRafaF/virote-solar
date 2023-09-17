@@ -26,7 +26,7 @@ const MissionDataDefault: MissionDataType = {
 
 const MissionDataContext = createContext<
     [MissionDataType, Dispatch<SetStateAction<MissionDataType>>]
->([MissionDataDefault, () => {}]);
+>([{ ...MissionDataDefault }, () => {}]);
 
 export default MissionDataContext;
 

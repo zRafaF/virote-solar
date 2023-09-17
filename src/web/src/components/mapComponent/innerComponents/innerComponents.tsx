@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 import React, { useState, FC, useContext, useEffect } from "react";
 
-import { TileLayer, useMap, useMapEvents } from "react-leaflet";
+import { TileLayer, useMap, useMapEvents, Polyline } from "react-leaflet";
 import {
     Divider,
     Fab,
@@ -155,6 +155,28 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
         ));
     };
 
+    const makePolyLines = () => {
+        if (missionData.waypoints === undefined) return <></>;
+        let polyLines: JSX.Element[] = [];
+        for (let i = 0; i < missionData.waypoints.length - 1; i++) {
+            const fromWaypointPos = missionData.waypoints[i].position;
+            const toWaypointPos = missionData.waypoints[i + 1].position;
+
+            polyLines.push(
+                <Polyline
+                    key={i}
+                    positions={[
+                        [fromWaypointPos.lat, fromWaypointPos.lng],
+                        [toWaypointPos.lat, toWaypointPos.lng],
+                    ]}
+                    weight={3}
+                    color={"red"}
+                />
+            );
+        }
+        return polyLines;
+    };
+
     return (
         <React.Fragment>
             {getTileLayer()}
@@ -246,6 +268,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 </Tooltip>
             </Stack>
             {makeMarkers()}
+            {makePolyLines()}
         </React.Fragment>
     );
 };

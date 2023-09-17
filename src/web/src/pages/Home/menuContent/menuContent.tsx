@@ -12,6 +12,8 @@ import MissionDataContext from "contexts/missionDataContext";
 import { uploadMission } from "helper/api";
 import { getMissionArray } from "helper/util";
 import WaypointsTable from "./WaypointsTable/WaypointsTable";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 interface MenuContentProps {}
 
 function download(content: string, fileName: string, contentType: string) {
@@ -45,7 +47,7 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
             alert(parsedData);
         }
     };
-    const [missionData] = useContext(MissionDataContext);
+    const [missionData, setMissionData] = useContext(MissionDataContext);
 
     const saveMissionData = () => {
         const myArray = getMissionArray(missionData.waypoints);
@@ -57,6 +59,15 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
         uploadMission(missionData);
     };
 
+    const handleDeleteMission = async () => {
+        const confirmationText = "Tem certeza que deseja DELETAR ESSA MISSÃO?";
+        if (window.confirm(confirmationText) === true) {
+            setMissionData((old) => ({
+                ...old,
+                waypoints: [],
+            }));
+        }
+    };
     return (
         <Container disableGutters sx={{ pl: { sm: 0, md: 2 } }}>
             <Stack spacing={2}>
@@ -95,7 +106,22 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
                 <Divider />
                 <WaypointsTable />
                 <Divider />
-                <Stack direction="row" spacing={2} justifyContent={"center"}>
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    justifyContent={"space-around"}
+                >
+                    <Tooltip title="Exclui a missão atual" arrow>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            size="large"
+                            endIcon={<DeleteIcon />}
+                            onClick={handleDeleteMission}
+                        >
+                            Excluir
+                        </Button>
+                    </Tooltip>
                     <Tooltip title="Fazer upload da missão para a RPA" arrow>
                         <Button
                             variant="contained"
@@ -108,7 +134,6 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
                         </Button>
                     </Tooltip>
                 </Stack>
-                <Divider />
             </Stack>
         </Container>
     );
