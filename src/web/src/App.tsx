@@ -28,9 +28,18 @@ function App() {
         <ThemeProvider theme={defaultTheme}>
             <GlobalAccessProvider>
                 <MissionDataProvider>
-                    <div className="App">
+                    <div
+                        className="App"
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                        }}
+                    >
                         <HashRouter>
-                            <HeaderMui></HeaderMui>
+                            <HeaderMui />
                             <Routes>
                                 <Route path="/" element={<Home />} />
                                 <Route path="status" element={<Status />} />

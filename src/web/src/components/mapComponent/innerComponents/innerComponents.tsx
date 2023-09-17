@@ -24,6 +24,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import WaypointComponent from "./waypointComponent";
 import MissionDataContext from "contexts/missionDataContext";
 import useClosestWaypoint from "hooks/useClosestWaypoint";
+import { WaypointType } from "types/CustomWaypoint";
 type mapType = "satellite" | "street";
 
 interface InnerComponentsProps {}
@@ -104,7 +105,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
         };
     };
 
-    const addWaypoint = () => {
+    const addWaypoint = (type: WaypointType) => {
         setMissionData((prevMissionData) => {
             const currentNumOfWaypoints = prevMissionData.waypoints.length;
 
@@ -112,6 +113,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 id: currentNumOfWaypoints,
                 position: map.getCenter(),
                 height: 50,
+                type: type,
             });
             return {
                 ...prevMissionData,
@@ -150,6 +152,7 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 onClick={() => {
                     alert(1);
                 }}
+                myType={element.type}
                 selected={closestWaypoint?.id === element.id ? true : false}
             />
         ));
@@ -222,7 +225,9 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 <Tooltip title="Adicionar waypoint" arrow>
                     <Fab
                         aria-label="add-waypoint"
-                        onClick={addWaypoint}
+                        onClick={() => {
+                            addWaypoint("waypoint");
+                        }}
                         size="medium"
                         color="success"
                     >
@@ -235,7 +240,9 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                 <Tooltip title="Setar casa" arrow>
                     <Fab
                         aria-label="set-home"
-                        onClick={toggleMap}
+                        onClick={() => {
+                            addWaypoint("home");
+                        }}
                         size="medium"
                         color="primary"
                     >
@@ -243,10 +250,12 @@ const InnerComponents: FC<InnerComponentsProps> = () => {
                     </Fab>
                 </Tooltip>
 
-                <Tooltip title="Executar ação especial" arrow>
+                <Tooltip title="Executar ação" arrow>
                     <Fab
-                        aria-label="run-special-action"
-                        onClick={toggleMap}
+                        aria-label="run-action"
+                        onClick={() => {
+                            addWaypoint("action");
+                        }}
                         size="medium"
                         color="primary"
                     >

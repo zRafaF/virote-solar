@@ -10,7 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FunctionComponent } from "react";
 import { CustomWaypointType } from "types/CustomWaypoint";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -18,7 +18,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Tooltip from "@mui/material/Tooltip";
 import TextField from "@mui/material/TextField";
 import MissionDataContext from "contexts/missionDataContext";
-import InputAdornment from "@mui/material/InputAdornment";
+import HomeIcon from "@mui/icons-material/Home";
+import PlaceIcon from "@mui/icons-material/Place";
+import StarRateIcon from "@mui/icons-material/StarRate";
 
 interface WaypointsTableItemProps {
     myWaypoint: CustomWaypointType;
@@ -27,7 +29,7 @@ interface WaypointsTableItemProps {
 const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
     myWaypoint,
 }) => {
-    const [missionData, setMissionData] = useContext(MissionDataContext);
+    const [, setMissionData] = useContext(MissionDataContext);
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -93,6 +95,20 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
         </Menu>
     );
 
+    const getWaypointSymbol = () => {
+        switch (myWaypoint.type) {
+            case "waypoint":
+                return <PlaceIcon color="primary" />;
+            case "home":
+                return <HomeIcon color="secondary" />;
+            case "action":
+                return <StarRateIcon color="success" />;
+
+            default:
+                return <PlaceIcon color="primary" />;
+        }
+    };
+
     return (
         <React.Fragment>
             <TableRow
@@ -109,7 +125,7 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
                     align="center"
                     padding="checkbox"
                 >
-                    {myWaypoint.id}
+                    {getWaypointSymbol()}
                 </TableCell>
                 <TableCell align="center" padding="checkbox">
                     {myWaypoint.position.lat.toFixed(3)}

@@ -16,9 +16,10 @@ const SideMenu: FC<SideMenuProps> = ({ drawerWidth, children }) => {
     return (
         <Box
             sx={{
-                height: "100%",
                 width: drawerWidth,
             }}
+            display={"flex"}
+            flexGrow={2}
         >
             {children}
             <Box

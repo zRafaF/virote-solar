@@ -35,7 +35,7 @@ const WaypointsTable: FunctionComponent<WaypointsTableProps> = () => {
                             sx={{ fontWeight: "bold" }}
                             padding="checkbox"
                         >
-                            ID
+                            Tipo
                         </TableCell>
                         <TableCell
                             align="center"

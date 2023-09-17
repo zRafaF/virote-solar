@@ -21,8 +21,8 @@ const Home: FunctionComponent<HomeProps> = () => {
                 position: "absolute",
                 display: "flex",
                 flexDirection: "row-reverse",
-                height: "stretch",
                 width: "stretch",
+                height: "stretch",
                 backgroundColor: "#f2f2f2",
                 overflow: "hidden",
             }}

@@ -6,13 +6,24 @@ import { LatLngExpression } from "leaflet";
 import { FunctionComponent } from "react";
 import { Marker, Popup } from "react-leaflet";
 import * as L from "leaflet";
+import { WaypointType } from "types/CustomWaypoint";
 
 const LeafIcon = L.Icon.extend({
     options: {},
 });
 
-const normalIcon = new LeafIcon({
+const defaultIcon = new LeafIcon({
     iconUrl: process.env.PUBLIC_URL + `/resources/marker-icon.png`,
+    iconAnchor: [13, 41],
+});
+
+const homeIcon = new LeafIcon({
+    iconUrl: process.env.PUBLIC_URL + `/resources/marker-icon-home.png`,
+    iconAnchor: [13, 41],
+});
+
+const actionIcon = new LeafIcon({
+    iconUrl: process.env.PUBLIC_URL + `/resources/marker-icon-action.png`,
     iconAnchor: [13, 41],
 });
 
@@ -26,18 +37,34 @@ interface WaypointComponentProps {
     position: LatLngExpression;
     onClick: () => void;
     selected: boolean;
+    myType: WaypointType;
 }
 
 const WaypointComponent: FunctionComponent<WaypointComponentProps> = ({
     position,
     onClick,
     selected,
+    myType,
 }) => {
+    const getMyNormalIcon = () => {
+        switch (myType) {
+            case "waypoint":
+                return defaultIcon;
+            case "home":
+                return homeIcon;
+            case "action":
+                return actionIcon;
+
+            default:
+                return defaultIcon;
+        }
+    };
+
     return (
         <Marker
             position={position}
             eventHandlers={{ click: onClick }}
-            icon={selected ? selectedIcon : normalIcon}
+            icon={selected ? selectedIcon : getMyNormalIcon()}
         >
             <Popup>
                 {/* Content for the popup */}
