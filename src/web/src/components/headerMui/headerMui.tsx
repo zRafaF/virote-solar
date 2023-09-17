@@ -19,7 +19,7 @@ import {
     useMediaQuery,
     useTheme,
 } from "@mui/material";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExploreIcon from "@mui/icons-material/Explore";
 import React from "react";
@@ -72,6 +72,10 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
         getPageIndexFromPathname(location.pathname)
     );
 
+    useEffect(() => {
+        setCurrentPageValue(getPageIndexFromPathname(location.pathname));
+    }, [location]);
+
     const handlePageChange = (
         event: React.SyntheticEvent,
         newValue: number
@@ -81,7 +85,12 @@ const HeaderMui: FunctionComponent<HeaderMuiProps> = () => {
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <AppBar position="static">
+            <AppBar
+                position="static"
+                sx={{
+                    zIndex: 2,
+                }}
+            >
                 <Container maxWidth={false}>
                     <Toolbar disableGutters>
                         <ExploreIcon

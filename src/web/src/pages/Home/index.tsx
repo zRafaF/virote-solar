@@ -18,11 +18,10 @@ const Home: FunctionComponent<HomeProps> = () => {
     return (
         <Box
             sx={{
-                position: "absolute",
                 display: "flex",
                 flexDirection: "row-reverse",
                 width: "stretch",
-                height: "stretch",
+                height: "100%",
                 backgroundColor: "#f2f2f2",
                 overflow: "hidden",
             }}

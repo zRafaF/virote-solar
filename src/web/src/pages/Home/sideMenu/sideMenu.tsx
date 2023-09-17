@@ -25,11 +25,12 @@ const SideMenu: FC<SideMenuProps> = ({ drawerWidth, children }) => {
             <Box
                 sx={{
                     position: "absolute",
-                    height: "100%",
                     top: 0,
+                    bottom: 0,
                     left: drawerWidth,
-                    transformOrigin: "left",
+                    width: "80px",
                     zIndex: 1,
+                    overflowY: "hidden",
                 }}
             >
                 <SideBarWave />
