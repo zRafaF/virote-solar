@@ -12,7 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import React, { useContext, useState } from "react";
 import { FunctionComponent } from "react";
-import { CustomWaypointType } from "types/CustomWaypoint";
+import { CustomWaypointType, WaypointType } from "types/CustomWaypoint";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Tooltip from "@mui/material/Tooltip";
@@ -21,6 +21,7 @@ import MissionDataContext from "contexts/missionDataContext";
 import HomeIcon from "@mui/icons-material/Home";
 import PlaceIcon from "@mui/icons-material/Place";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import Divider from "@mui/material/Divider";
 
 interface WaypointsTableItemProps {
     myWaypoint: CustomWaypointType;
@@ -30,7 +31,6 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
     myWaypoint,
 }) => {
     const [, setMissionData] = useContext(MissionDataContext);
-
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,7 +41,6 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
     };
 
     const handleDeleteWaypiont = () => {
-        handleClose();
         setMissionData((prevMissionData) => {
             const waypointIdToDelete = myWaypoint.id;
             prevMissionData.waypoints.splice(waypointIdToDelete, 1);
@@ -57,6 +56,8 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
                 ...prevMissionData,
             };
         });
+
+        handleClose();
     };
 
     const handleHeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +67,15 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
             oldMission.waypoints[myWaypoint.id].height = newHeight;
             return { ...oldMission };
         });
+    };
+
+    const handleTypeChange = (newType: WaypointType) => {
+        setMissionData((oldMission) => {
+            oldMission.waypoints[myWaypoint.id].type = newType;
+            return { ...oldMission };
+        });
+
+        handleClose();
     };
 
     const ExtraMenu = () => (
@@ -84,14 +94,49 @@ const WaypointsTableItem: FunctionComponent<WaypointsTableItemProps> = ({
                 horizontal: "right",
             }}
         >
-            <MenuItem onClick={handleDeleteWaypiont}>
-                <ListItemIcon>
-                    <DeleteIcon fontSize="small" />
-                </ListItemIcon>
-                <Typography variant="inherit">Remover</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <Tooltip title="Setar como Waypoint" arrow placement="right">
+                <MenuItem
+                    onClick={() => handleTypeChange("waypoint")}
+                    selected={myWaypoint.type === "waypoint"}
+                >
+                    <ListItemIcon>
+                        <PlaceIcon fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit">Waypoint</Typography>
+                </MenuItem>
+            </Tooltip>
+            <Tooltip title="Setar como Casa" arrow placement="right">
+                <MenuItem
+                    onClick={() => handleTypeChange("home")}
+                    selected={myWaypoint.type === "home"}
+                >
+                    <ListItemIcon>
+                        <HomeIcon fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit">Casa</Typography>
+                </MenuItem>
+            </Tooltip>
+            <Tooltip title="Setar como Ação" arrow placement="right">
+                <MenuItem
+                    onClick={() => handleTypeChange("action")}
+                    selected={myWaypoint.type === "action"}
+                >
+                    <ListItemIcon>
+                        <StarRateIcon fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit">Ação</Typography>
+                </MenuItem>
+            </Tooltip>
+
+            <Divider />
+            <Tooltip title="Apagar waypoint" arrow placement="right">
+                <MenuItem onClick={handleDeleteWaypiont}>
+                    <ListItemIcon>
+                        <DeleteIcon fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit">Remover</Typography>
+                </MenuItem>
+            </Tooltip>
         </Menu>
     );
 

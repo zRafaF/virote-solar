@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import { Button, Container, Divider, Stack, Tooltip } from "@mui/material";
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useMemo } from "react";
 import SaveIcon from "@mui/icons-material/Save";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import UploadIcon from "@mui/icons-material/Upload";
@@ -49,6 +49,16 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
     };
     const [missionData, setMissionData] = useContext(MissionDataContext);
 
+    const totalMissionDistance = useMemo(() => {
+        let totalDist = 0;
+        for (let i = 0; i < missionData.waypoints.length - 1; i++) {
+            const currentWaypointPos = missionData.waypoints[i].position;
+            const nextWaypointPos = missionData.waypoints[i + 1].position;
+            totalDist += currentWaypointPos.distanceTo(nextWaypointPos);
+        }
+        return totalDist;
+    }, [missionData]);
+
     const saveMissionData = () => {
         const myArray = getMissionArray(missionData.waypoints);
 
@@ -68,6 +78,14 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
             }));
         }
     };
+
+    const getFormattedDistance = () => {
+        if (totalMissionDistance > 1500) {
+            return `${(totalMissionDistance / 1000).toFixed(2)} km`;
+        }
+        return `${totalMissionDistance.toFixed(2)} m`;
+    };
+
     return (
         <Container disableGutters sx={{ pl: { sm: 0, md: 2 } }}>
             <Stack spacing={2}>
@@ -105,6 +123,7 @@ const MenuContent: FunctionComponent<MenuContentProps> = () => {
                 </Stack>
                 <Divider />
                 <WaypointsTable />
+                Distancia total: {getFormattedDistance()}
                 <Divider />
                 <Stack
                     direction="row"
